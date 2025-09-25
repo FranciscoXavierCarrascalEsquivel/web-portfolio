@@ -1,0 +1,88 @@
+// app/i18n.ts — config d'idiomes + diccionaris minimalistes
+// app/i18n.ts — config d'idiomes + diccionaris minimalistes
+export const locales = ["en", "es", "ca", "de"] as const;
+export type Locale = typeof locales[number];
+export const defaultLocale: Locale = "ca"; // idioma per defecte
+
+export const dict: Record<Locale, Record<string, string>> = {
+    en: {
+        siteTitle: "Kiko | Portfolio",
+        navHome: "Home",
+        navAbout: "About",
+        navExperience: "Experience",
+        navSkills: "Skills",
+        navContact: "Contact",
+        heroTitle: "Hi, I'm Kiko",
+        heroSubtitle: "Computer engineering student • Web developer",
+        heroCta: "See projects",
+        sectionProjects: "Featured Projects",
+        sectionSkills: "Skills",
+        sectionExperience: "Experience",
+        sectionContact: "Contact",
+        aboutTitle: "About",
+        aboutBody1: "I'm Kiko, a computer engineering student focused on clean, animated frontends.",
+        aboutBody2: "I like building with Next.js, Tailwind and Framer Motion.",
+        contactCTA: "Let's talk",
+    },
+    es: {
+        siteTitle: "Kiko | Portfolio",
+        navHome: "Inicio",
+        navAbout: "Sobre mí",
+        navExperience: "Experiencia",
+        navSkills: "Skills",
+        navContact: "Contacto",
+        heroTitle: "Hola, soy Kiko",
+        heroSubtitle: "Estudiante de ingeniería informática • Desarrollador web",
+        heroCta: "Ver proyectos",
+        sectionProjects: "Proyectos destacados",
+        sectionSkills: "Habilidades",
+        sectionExperience: "Experiencia",
+        sectionContact: "Contacto",
+        aboutTitle: "Sobre mí",
+        aboutBody1: "Soy Kiko, estudiante de ingeniería informática, centrado en frontends limpios y animados.",
+        aboutBody2: "Trabajo con Next.js, Tailwind y Framer Motion.",
+        contactCTA: "Hablemos",
+    },
+    ca: {
+        siteTitle: "Kiko | Portfolio",
+        navHome: "Inici",
+        navAbout: "Sobre mi",
+        navExperience: "Experiència",
+        navSkills: "Skills",
+        navContact: "Contacte",
+        heroTitle: "Hola, sóc en Kiko",
+        heroSubtitle: "Estudiant d'enginyeria informàtica • Desenvolupador web",
+        heroCta: "Veure projectes",
+        sectionProjects: "Projectes destacats",
+        sectionSkills: "Habilitats",
+        sectionExperience: "Experiència",
+        sectionContact: "Contacte",
+        aboutTitle: "Sobre mi",
+        aboutBody1: "Sóc en Kiko, estudiant d'enginyeria informàtica, m'agrada el frontend polit i animat.",
+        aboutBody2: "Treballo amb Next.js, Tailwind i Framer Motion.",
+        contactCTA: "Parlem-ne",
+    },
+    de: {
+        siteTitle: "Kiko | Portfolio",
+        navHome: "Start",
+        navAbout: "Über mich",
+        navExperience: "Erfahrung",
+        navSkills: "Skills",
+        navContact: "Kontakt",
+        heroTitle: "Hi, ich bin Kiko",
+        heroSubtitle: "Informatikstudent • Webentwickler",
+        heroCta: "Projekte ansehen",
+        sectionProjects: "Ausgewählte Projekte",
+        sectionSkills: "Fähigkeiten",
+        sectionExperience: "Erfahrung",
+        sectionContact: "Kontakt",
+        aboutTitle: "Über mich",
+        aboutBody1: "Ich bin Kiko, Informatikstudent, der saubere, animierte Frontends baut.",
+        aboutBody2: "Ich arbeite mit Next.js, Tailwind und Framer Motion.",
+        contactCTA: "Schreib mir",
+    },
+};
+
+export function t(lang: Locale, key: string) {
+return dict[lang][key] ?? key;
+}
