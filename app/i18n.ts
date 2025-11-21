@@ -1,5 +1,3 @@
-// app/i18n.ts — config d'idiomes + diccionaris minimalistes
-// app/i18n.ts — config d'idiomes + diccionaris minimalistes
 export const locales = ["en", "es", "ca", "de"] as const;
 export type Locale = typeof locales[number];
 export const defaultLocale: Locale = "ca"; // idioma per defecte

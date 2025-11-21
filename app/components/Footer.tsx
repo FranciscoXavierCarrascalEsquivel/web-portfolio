@@ -1,0 +1,40 @@
+"use client";
+
+import { Github, Linkedin, Mail } from "lucide-react";
+
+export default function Footer() {
+    return (
+        <footer className="w-full py-8 mt-20 border-t border-gray-800 bg-black/50 backdrop-blur-sm">
+            <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div className="text-gray-400 text-sm">
+                    © {new Date().getFullYear()} Francisco Xavier Carrascal Esquivel. All rights reserved.
+                </div>
+
+                <div className="flex gap-6">
+                    <a
+                        href="https://www.linkedin.com/in/francisco-xavier-carrascal-esquivel-50b680370/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-green-400 transition-colors"
+                    >
+                        <Linkedin className="w-5 h-5" />
+                    </a>
+                    <a
+                        href="https://github.com/FranciscoXavierCarrascalEsquivel"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-green-400 transition-colors"
+                    >
+                        <Github className="w-5 h-5" />
+                    </a>
+                    <a
+                        href="mailto:franciscocarrascal@example.com" // Replace with actual email if known, or keep generic
+                        className="text-gray-400 hover:text-green-400 transition-colors"
+                    >
+                        <Mail className="w-5 h-5" />
+                    </a>
+                </div>
+            </div>
+        </footer>
+    );
+}
