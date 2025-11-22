@@ -2,7 +2,7 @@ type ButtonProps = {
   label: string;
 };
 
-export default function Button({label}: ButtonProps) {
+export default function Button({ label }: ButtonProps) {
   return (
     <>
       <a

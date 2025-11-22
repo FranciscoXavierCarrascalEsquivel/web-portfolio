@@ -140,6 +140,7 @@ function Card({ url, ...props }: CardProps) {
             <Line points={borderPoints} color="#39ff14" lineWidth={3} toneMapped={false} />
 
             {/* Image Content */}
+            {/* eslint-disable-next-line jsx-a11y/alt-text */}
             <Image
                 url={url}
                 transparent

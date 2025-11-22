@@ -32,7 +32,7 @@ export default function TypewriterText({ text, className = "", delay = 0 }: Type
             } else {
                 clearInterval(interval);
             }
-        }, 100); // Typing speed
+        }, 30); // Typing speed - much faster!
 
         return () => clearInterval(interval);
     }, [started, text]);
@@ -40,16 +40,18 @@ export default function TypewriterText({ text, className = "", delay = 0 }: Type
     return (
         <span className={`inline-block ${className}`}>
             {displayedText}
-            <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 1, 0] }}
-                transition={{
-                    duration: 0.8,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                }}
-                className="inline-block ml-1 w-1 h-[1em] bg-green-500 align-middle"
-            />
+            {displayedText.length > 0 && (
+                <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [0, 1, 0] }}
+                    transition={{
+                        duration: 0.8,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                    }}
+                    className="inline-block ml-1 w-1 h-[1em] bg-green-500 align-middle"
+                />
+            )}
         </span>
     );
 }

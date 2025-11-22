@@ -5,6 +5,9 @@ import Carousel3D from "../components/Carousel3D";
 import TypewriterText from "../components/TypewriterText";
 import Footer from "../components/Footer";
 import TechGrid from "../components/TechGrid";
+import LanguageSection from "../components/LanguageSection";
+import WorkExperience from "../components/WorkExperience";
+import ContactSection from "../components/ContactSection";
 import { Github, Linkedin, Mail } from "lucide-react";
 
 export default function Page() {
@@ -72,7 +75,39 @@ export default function Page() {
           </div>
 
           <div className="mt-8 flex justify-center">
-            <Button label="Hola" />
+            <div className="mt-8 flex gap-4 justify-center flex-wrap">
+              {/* Fiverr Button */}
+              <a
+                href="https://www.fiverr.com/fraviercaes/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center gap-2 px-6 py-3 bg-[#1DBF73] hover:bg-[#19a463] text-white font-bold text-sm uppercase tracking-wider rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl hover:shadow-green-500/50"
+              >
+                <img
+                  src="/imagenes/fiverr.png"
+                  alt="Fiverr"
+                  className="w-5 h-5 brightness-0 invert"
+                />
+                Fiverr
+              </a>
+
+              {/* Contact Me Button */}
+              <a
+                href="#contact"
+                className="group relative inline-flex items-center gap-2 px-6 py-3 bg-transparent border-2 border-white hover:bg-white text-white hover:text-black font-bold text-sm uppercase tracking-wider rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Contact me
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -83,7 +118,7 @@ export default function Page() {
       </div>
 
       <MotionWrapper useScroll delay={0.1}>
-        <h1 className="mt-12 mb-0 text-center text-4xl font-semibold text-white">
+        <h1 id="work-experience" className="mt-12 mb-0 text-center text-4xl font-semibold text-white scroll-mt-48">
           Work Experience
         </h1>
       </MotionWrapper>
@@ -153,7 +188,7 @@ export default function Page() {
       </div>
 
       <MotionWrapper useScroll delay={0.1}>
-        <h1 className="mt-12 mb-0 text-center text-4xl font-semibold text-white">
+        <h1 id="skills" className="mt-12 mb-0 text-center text-4xl font-semibold text-white scroll-mt-48">
           Skills & Technologies
         </h1>
       </MotionWrapper>
@@ -161,6 +196,20 @@ export default function Page() {
       <MotionWrapper useScroll delay={0.2} className="max-w-6xl mx-auto mt-20 px-4">
         <TechGrid />
       </MotionWrapper>
+
+      {/* Section Separator */}
+      <div className="max-w-4xl mx-auto mt-24 mb-12">
+        <div className="h-px bg-gradient-to-r from-transparent via-green-400 to-transparent opacity-30"></div>
+      </div>
+
+      <LanguageSection />
+
+      {/* Section Separator */}
+      <div className="max-w-4xl mx-auto mt-24 mb-12">
+        <div className="h-px bg-gradient-to-r from-transparent via-green-400 to-transparent opacity-30"></div>
+      </div>
+
+      <ContactSection />
 
       <Footer />
     </main>
