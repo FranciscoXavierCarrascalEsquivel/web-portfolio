@@ -6,7 +6,30 @@ import MotionWrapper from "./MotionWrapper";
 import { Send, Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import ContactGlobe from "./ContactGlobe";
 
-export default function ContactSection() {
+interface ContactSectionProps {
+    title: string;
+    subtitle: string;
+    form: {
+        firstName: string;
+        lastName: string;
+        email: string;
+        subject: string;
+        message: string;
+        send: string;
+        sending: string;
+        sent: string;
+        error: string;
+    };
+    placeholders: {
+        firstName: string;
+        lastName: string;
+        email: string;
+        subject: string;
+        message: string;
+    };
+}
+
+export default function ContactSection({ title, subtitle, form, placeholders }: ContactSectionProps) {
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -64,9 +87,9 @@ export default function ContactSection() {
 
             <MotionWrapper useScroll delay={0.1}>
                 <div className="text-center mb-6">
-                    <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-1 transition-colors duration-300">Get in Touch</h2>
+                    <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-1 transition-colors duration-300">{title}</h2>
                     <p className="text-gray-600 dark:text-gray-400 max-w-xl mx-auto text-sm transition-colors duration-300">
-                        Have a project in mind? Let&apos;s build something amazing together.
+                        {subtitle}
                     </p>
                 </div>
             </MotionWrapper>
@@ -88,7 +111,7 @@ export default function ContactSection() {
                             <form onSubmit={handleSubmit} className="space-y-3">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                     <div className="space-y-1">
-                                        <label htmlFor="firstName" className={labelClasses}>First Name</label>
+                                        <label htmlFor="firstName" className={labelClasses}>{form.firstName}</label>
                                         <input
                                             type="text"
                                             id="firstName"
@@ -99,11 +122,11 @@ export default function ContactSection() {
                                             onFocus={() => setFocusedField("firstName")}
                                             onBlur={() => setFocusedField(null)}
                                             className={inputClasses("firstName")}
-                                            placeholder="John"
+                                            placeholder={placeholders.firstName}
                                         />
                                     </div>
                                     <div className="space-y-1">
-                                        <label htmlFor="lastName" className={labelClasses}>Last Name</label>
+                                        <label htmlFor="lastName" className={labelClasses}>{form.lastName}</label>
                                         <input
                                             type="text"
                                             id="lastName"
@@ -114,13 +137,13 @@ export default function ContactSection() {
                                             onFocus={() => setFocusedField("lastName")}
                                             onBlur={() => setFocusedField(null)}
                                             className={inputClasses("lastName")}
-                                            placeholder="Doe"
+                                            placeholder={placeholders.lastName}
                                         />
                                     </div>
                                 </div>
 
                                 <div className="space-y-1">
-                                    <label htmlFor="email" className={labelClasses}>Email Address</label>
+                                    <label htmlFor="email" className={labelClasses}>{form.email}</label>
                                     <input
                                         type="email"
                                         id="email"
@@ -131,12 +154,12 @@ export default function ContactSection() {
                                         onFocus={() => setFocusedField("email")}
                                         onBlur={() => setFocusedField(null)}
                                         className={inputClasses("email")}
-                                        placeholder="john@example.com"
+                                        placeholder={placeholders.email}
                                     />
                                 </div>
 
                                 <div className="space-y-1">
-                                    <label htmlFor="subject" className={labelClasses}>Subject</label>
+                                    <label htmlFor="subject" className={labelClasses}>{form.subject}</label>
                                     <input
                                         type="text"
                                         id="subject"
@@ -147,12 +170,12 @@ export default function ContactSection() {
                                         onFocus={() => setFocusedField("subject")}
                                         onBlur={() => setFocusedField(null)}
                                         className={inputClasses("subject")}
-                                        placeholder="Project Inquiry"
+                                        placeholder={placeholders.subject}
                                     />
                                 </div>
 
                                 <div className="space-y-1">
-                                    <label htmlFor="message" className={labelClasses}>Message</label>
+                                    <label htmlFor="message" className={labelClasses}>{form.message}</label>
                                     <textarea
                                         id="message"
                                         name="message"
@@ -163,7 +186,7 @@ export default function ContactSection() {
                                         onFocus={() => setFocusedField("message")}
                                         onBlur={() => setFocusedField(null)}
                                         className={`${inputClasses("message")} resize-none`}
-                                        placeholder="Tell me about your project..."
+                                        placeholder={placeholders.message}
                                     />
                                 </div>
 
@@ -179,19 +202,19 @@ export default function ContactSection() {
                                 >
                                     {status === "loading" ? (
                                         <>
-                                            <Loader2 className="animate-spin w-4 h-4" /> Sending...
+                                            <Loader2 className="animate-spin w-4 h-4" /> {form.sending}
                                         </>
                                     ) : status === "success" ? (
                                         <>
-                                            <CheckCircle className="w-4 h-4" /> Sent!
+                                            <CheckCircle className="w-4 h-4" /> {form.sent}
                                         </>
                                     ) : status === "error" ? (
                                         <>
-                                            <AlertCircle className="w-4 h-4" /> Error
+                                            <AlertCircle className="w-4 h-4" /> {form.error}
                                         </>
                                     ) : (
                                         <>
-                                            <Send className="w-3 h-3" /> Send Message
+                                            <Send className="w-3 h-3" /> {form.send}
                                         </>
                                     )}
                                 </button>

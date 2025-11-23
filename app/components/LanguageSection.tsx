@@ -3,39 +3,48 @@
 import { motion } from "framer-motion";
 import MotionWrapper from "./MotionWrapper";
 
-const languages = [
-    {
-        name: "Español",
-        level: "Native",
-        flag: "/flags/es.svg",
-        color: "from-red-500 to-yellow-500"
-    },
-    {
-        name: "Català",
-        level: "Native",
-        flag: "/flags/cat.svg",
-        color: "from-yellow-400 to-red-500"
-    },
-    {
-        name: "English",
-        level: "CLUC B2",
-        flag: "/flags/en.svg",
-        color: "from-blue-600 to-red-600"
-    },
-    {
-        name: "Deutsch",
-        level: "Starter (A1)",
-        flag: "/flags/de.svg",
-        color: "from-black to-yellow-500"
-    },
-];
+interface LanguageSectionProps {
+    title: string;
+    levels: {
+        native: string;
+        b2: string;
+        a1: string;
+    };
+}
 
-export default function LanguageSection() {
+export default function LanguageSection({ title, levels }: LanguageSectionProps) {
+    const languages = [
+        {
+            name: "Español",
+            level: levels.native,
+            flag: "/flags/es.png",
+            color: "from-red-500 to-yellow-500"
+        },
+        {
+            name: "Català",
+            level: levels.native,
+            flag: "/flags/cat.svg",
+            color: "from-yellow-400 to-red-500"
+        },
+        {
+            name: "English",
+            level: levels.b2,
+            flag: "/flags/en.svg",
+            color: "from-blue-600 to-red-600"
+        },
+        {
+            name: "Deutsch",
+            level: levels.a1,
+            flag: "/flags/de.svg",
+            color: "from-black to-yellow-500"
+        },
+    ];
+
     return (
         <section id="languages" className="w-full max-w-6xl mx-auto px-4 py-20 scroll-mt-24">
             <MotionWrapper useScroll delay={0.1}>
                 <h2 className="text-4xl font-bold text-center mb-16 text-gray-900 dark:text-white transition-colors duration-300">
-                    Languages
+                    {title}
                 </h2>
             </MotionWrapper>
 

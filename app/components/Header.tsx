@@ -1,12 +1,25 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import MotionWrapper from "./MotionWrapper";
 import LanguageSwitcher from "./LanguageSwitcher";
 
-export default function Header() {
-    const navItems = ["Work Experience", "Skills", "Languages", "Contact"];
+interface HeaderProps {
+    navItems: {
+        experience: string;
+        skills: string;
+        languages: string;
+        contact: string;
+    };
+}
+
+export default function Header({ navItems }: HeaderProps) {
+    const items = [
+        { label: navItems.experience, id: "work-experience" },
+        { label: navItems.skills, id: "skills" },
+        { label: navItems.languages, id: "languages" },
+        { label: navItems.contact, id: "contact" }
+    ];
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-black/50 backdrop-blur-md transition-colors duration-300">
@@ -37,24 +50,24 @@ export default function Header() {
 
                     {/* Navigation Links */}
                     <nav className="hidden md:flex items-center space-x-1">
-                        {navItems.map((item, index) => (
+                        {items.map((item, index) => (
                             <MotionWrapper
-                                key={item}
+                                key={item.label}
                                 delay={0.3 + index * 0.1}
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5 }}
                             >
                                 <a
-                                    href={`#${item.toLowerCase().replace(" ", "-")}`}
+                                    href={`#${item.id}`}
                                     onClick={(e) => {
                                         e.preventDefault();
-                                        const element = document.getElementById(item.toLowerCase().replace(" ", "-"));
+                                        const element = document.getElementById(item.id);
                                         element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                                     }}
                                     className="relative px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 transition-colors duration-300 hover:text-black dark:hover:text-white group"
                                 >
-                                    <span className="relative z-10">{item}</span>
+                                    <span className="relative z-10">{item.label}</span>
                                     <span className="absolute inset-0 bg-green-500/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center border border-green-500/20 backdrop-blur-sm"></span>
                                 </a>
                             </MotionWrapper>

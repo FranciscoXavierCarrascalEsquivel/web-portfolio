@@ -3,33 +3,33 @@
 import { motion } from "framer-motion";
 import MotionWrapper from "./MotionWrapper";
 
-const experiences = [
-    {
-        title: "Research Group Assistant (BCDS)",
-        company: "Universitat de Girona",
-        period: "Jun 2025 - Present",
-        description: "Development and maintenance of the BCDS research group website using Spring Boot, Thymeleaf, Bootstrap, HTML, CSS, and JavaScript. Dockerization of applications. Digital design and layout of visual materials (institutional brochure and web graphic resources).",
-        skills: ["Spring Boot", "Thymeleaf", "Docker", "Bootstrap", "JavaScript"],
-        logo: "/imagenes/udg-logo.png"
-    },
-    {
-        title: "Cashier",
-        company: "Mercadona",
-        period: "Jul 2023 - Jun 2025",
-        description: "Customer service at the checkout line. Product restocking and placement. Support for specific sections such as the fruit or bakery departments.",
-        skills: ["Customer Service", "Teamwork", "Adaptability"],
-        logo: "/imagenes/mercadona-logo.jpg"
-    },
-];
+interface Experience {
+    title: string;
+    company: string;
+    period: string;
+    description: string;
+    skills: string[];
+    logo?: string;
+}
 
-export default function WorkExperience() {
+interface WorkExperienceProps {
+    experiences: Experience[];
+}
+
+export default function WorkExperience({ experiences }: WorkExperienceProps) {
+    // Map logos to experiences based on company name or index since logos are static assets
+    const experiencesWithLogos = experiences.map(exp => ({
+        ...exp,
+        logo: exp.company.toLowerCase().includes("girona") ? "/imagenes/udg-logo.png" : "/imagenes/mercadona-logo.jpg"
+    }));
+
     return (
         <div className="w-full max-w-4xl mx-auto">
             <div className="relative space-y-8">
                 {/* Vertical Line */}
                 <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-800 md:left-1/2 md:-ml-0.5" />
 
-                {experiences.map((exp, index) => (
+                {experiencesWithLogos.map((exp, index) => (
                     <MotionWrapper
                         key={index}
                         delay={0.2 + index * 0.1}

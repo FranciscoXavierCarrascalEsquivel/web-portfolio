@@ -2,51 +2,62 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import MotionWrapper from "./MotionWrapper";
 
-const categories = [
-    { id: "all", label: "All" },
-    { id: "frontend", label: "Frontend" },
-    { id: "backend", label: "Backend & DB" },
-    { id: "languages", label: "Languages" },
-    { id: "tools", label: "Tools & DevOps" },
-];
+interface TechGridProps {
+    categories: {
+        all: string;
+        frontend: string;
+        backend: string;
+        languages: string;
+        tools: string;
+    };
+    descriptions: Record<string, string>;
+    hoverText: string;
+}
 
-const technologies = [
-    // Frontend
-    { name: "Next.js", category: "frontend", logo: "https://cdn.simpleicons.org/nextdotjs/ffffff", color: "#000000", description: "React framework for production-grade applications." },
-    { name: "React", category: "frontend", logo: "https://cdn.simpleicons.org/react/61DAFB", color: "#20232a", description: "Library for building interactive user interfaces." },
-    { name: "Tailwind CSS", category: "frontend", logo: "https://cdn.simpleicons.org/tailwindcss/06B6D4", color: "#0f172a", description: "Utility-first CSS framework for rapid UI development." },
-    { name: "Bootstrap", category: "frontend", logo: "https://cdn.simpleicons.org/bootstrap/7952B3", color: "#563d7c", description: "Component-based framework for responsive web design." },
-    { name: "Three.js", category: "frontend", logo: "https://cdn.simpleicons.org/threedotjs/ffffff", color: "#000000", description: "3D library for creating immersive web experiences." },
-    { name: "HTML5", category: "frontend", logo: "https://cdn.simpleicons.org/html5/E34F26", color: "#E34F26", description: "Standard markup language for documents designed to be displayed in a web browser." },
-    { name: "CSS3", category: "frontend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg", color: "#1572B6", description: "Style sheet language used for describing the presentation of a document written in HTML." },
+export default function TechGrid({ categories: catLabels, descriptions, hoverText }: TechGridProps) {
+    const categories = [
+        { id: "all", label: catLabels.all },
+        { id: "frontend", label: catLabels.frontend },
+        { id: "backend", label: catLabels.backend },
+        { id: "languages", label: catLabels.languages },
+        { id: "tools", label: catLabels.tools },
+    ];
 
-    // Backend & DB
-    { name: "Firebase", category: "backend", logo: "https://cdn.simpleicons.org/firebase/ffffff", color: "#FFA611", description: "Backend-as-a-Service for real-time apps." },
-    { name: "MySQL", category: "backend", logo: "https://cdn.simpleicons.org/mysql/4479A1", color: "#00758F", description: "Open-source relational database management system." },
-    { name: "MariaDB", category: "backend", logo: "https://cdn.simpleicons.org/mariadb/003545", color: "#003545", description: "Community-developed fork of the MySQL relational database management system." },
-    { name: "PostgreSQL", category: "backend", logo: "https://cdn.simpleicons.org/postgresql/4169E1", color: "#336791", description: "Powerful, open source object-relational database system." },
-    { name: "Java", category: "backend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg", color: "#ffffff", description: "Robust language for backend systems." },
-    { name: "C#", category: "backend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg", color: "#A259FF", description: "Modern language for .NET development." },
+    const technologies = [
+        // Frontend
+        { name: "Next.js", category: "frontend", logo: "https://cdn.simpleicons.org/nextdotjs/ffffff", color: "#000000" },
+        { name: "React", category: "frontend", logo: "https://cdn.simpleicons.org/react/61DAFB", color: "#20232a" },
+        { name: "Tailwind CSS", category: "frontend", logo: "https://cdn.simpleicons.org/tailwindcss/06B6D4", color: "#0f172a" },
+        { name: "Bootstrap", category: "frontend", logo: "https://cdn.simpleicons.org/bootstrap/7952B3", color: "#563d7c" },
+        { name: "Three.js", category: "frontend", logo: "https://cdn.simpleicons.org/threedotjs/ffffff", color: "#000000" },
+        { name: "HTML5", category: "frontend", logo: "https://cdn.simpleicons.org/html5/E34F26", color: "#E34F26" },
+        { name: "CSS3", category: "frontend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg", color: "#1572B6" },
 
-    // Languages
-    { name: "JavaScript", category: "languages", logo: "https://cdn.simpleicons.org/javascript/F7DF1E", color: "#000000", description: "The language of the web." },
-    { name: "TypeScript", category: "languages", logo: "https://cdn.simpleicons.org/typescript/3178C6", color: "#ffffff", description: "Typed superset of JavaScript." },
-    { name: "Python", category: "languages", logo: "https://cdn.simpleicons.org/python/3776AB", color: "#FFD43B", description: "Versatile language for AI and scripting." },
-    { name: "C++", category: "languages", logo: "https://cdn.simpleicons.org/cplusplus/00599C", color: "#ffffff", description: "High-performance systems programming." },
-    { name: "Bash", category: "languages", logo: "https://cdn.simpleicons.org/gnubash/4EAA25", color: "#4EAA25", description: "Unix shell and command language." },
+        // Backend & DB
+        { name: "Firebase", category: "backend", logo: "https://cdn.simpleicons.org/firebase/ffffff", color: "#FFA611" },
+        { name: "MySQL", category: "backend", logo: "https://cdn.simpleicons.org/mysql/4479A1", color: "#00758F" },
+        { name: "MariaDB", category: "backend", logo: "https://cdn.simpleicons.org/mariadb/003545", color: "#003545" },
+        { name: "PostgreSQL", category: "backend", logo: "https://cdn.simpleicons.org/postgresql/4169E1", color: "#336791" },
+        { name: "Java", category: "backend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg", color: "#ffffff" },
+        { name: "C#", category: "backend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg", color: "#A259FF" },
 
-    // Tools & DevOps
-    { name: "Docker", category: "tools", logo: "https://cdn.simpleicons.org/docker/2496ED", color: "#ffffff", description: "Platform for developing, shipping, and running applications in containers." },
-    { name: "Git", category: "tools", logo: "https://cdn.simpleicons.org/git/F05032", color: "#F05032", description: "Distributed version control system." },
-    { name: "GitHub", category: "tools", logo: "https://cdn.simpleicons.org/github/ffffff", color: "#181717", description: "Platform for hosting and collaborating on code." },
-    { name: "GitLab", category: "tools", logo: "https://cdn.simpleicons.org/gitlab/FC6D26", color: "#FC6D26", description: "DevOps platform for software innovation." },
-    { name: "Vercel", category: "tools", logo: "https://cdn.simpleicons.org/vercel/ffffff", color: "#000000", description: "Platform for frontend frameworks and static sites." },
-    { name: "Blender", category: "tools", logo: "https://cdn.simpleicons.org/blender/E87D0D", color: "#E87D0D", description: "Open source 3D creation suite." },
-];
+        // Languages
+        { name: "JavaScript", category: "languages", logo: "https://cdn.simpleicons.org/javascript/F7DF1E", color: "#000000" },
+        { name: "TypeScript", category: "languages", logo: "https://cdn.simpleicons.org/typescript/3178C6", color: "#ffffff" },
+        { name: "Python", category: "languages", logo: "https://cdn.simpleicons.org/python/3776AB", color: "#FFD43B" },
+        { name: "C++", category: "languages", logo: "https://cdn.simpleicons.org/cplusplus/00599C", color: "#ffffff" },
+        { name: "Bash", category: "languages", logo: "https://cdn.simpleicons.org/gnubash/4EAA25", color: "#4EAA25" },
 
-export default function TechGrid() {
+        // Tools & DevOps
+        { name: "Docker", category: "tools", logo: "https://cdn.simpleicons.org/docker/2496ED", color: "#ffffff" },
+        { name: "Git", category: "tools", logo: "https://cdn.simpleicons.org/git/F05032", color: "#F05032" },
+        { name: "GitHub", category: "tools", logo: "https://cdn.simpleicons.org/github/ffffff", color: "#181717" },
+        { name: "GitLab", category: "tools", logo: "https://cdn.simpleicons.org/gitlab/FC6D26", color: "#FC6D26" },
+        { name: "Vercel", category: "tools", logo: "https://cdn.simpleicons.org/vercel/ffffff", color: "#000000" },
+        { name: "Blender", category: "tools", logo: "https://cdn.simpleicons.org/blender/E87D0D", color: "#E87D0D" },
+    ];
+
     const [activeCategory, setActiveCategory] = useState("all");
     const [hoveredTech, setHoveredTech] = useState<typeof technologies[0] | null>(null);
 
@@ -134,7 +145,7 @@ export default function TechGrid() {
                                     {categories.find(c => c.id === hoveredTech.category)?.label}
                                 </span>
                                 <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed transition-colors duration-300">
-                                    {hoveredTech.description}
+                                    {descriptions[hoveredTech.name] || hoveredTech.name}
                                 </p>
                             </motion.div>
                         ) : (
@@ -147,7 +158,7 @@ export default function TechGrid() {
                                 <div className="w-12 h-12 mb-4 rounded-full border-2 border-dashed border-gray-300 dark:border-gray-700 flex items-center justify-center transition-colors duration-300">
                                     <span className="text-xl">👆</span>
                                 </div>
-                                <p>Hover over a technology to see details</p>
+                                <p>{hoverText}</p>
                             </motion.div>
                         )}
                     </AnimatePresence>

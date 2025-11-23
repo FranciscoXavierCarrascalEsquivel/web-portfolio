@@ -2,12 +2,16 @@
 
 import { Github, Linkedin, Mail } from "lucide-react";
 
-export default function Footer() {
+interface FooterProps {
+    rightsText: string;
+}
+
+export default function Footer({ rightsText }: FooterProps) {
     return (
         <footer className="w-full py-8 mt-20 border-t border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-black/50 backdrop-blur-sm transition-colors duration-300">
             <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
                 <div className="text-gray-600 dark:text-gray-400 text-sm transition-colors duration-300">
-                    © {new Date().getFullYear()} Francisco Xavier Carrascal Esquivel. All rights reserved.
+                    © {new Date().getFullYear()} Francisco Xavier Carrascal Esquivel. {rightsText}
                 </div>
 
                 <div className="flex gap-6">

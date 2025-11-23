@@ -1,5 +1,4 @@
 import Header from "../components/Header";
-import Button from "../components/Button";
 import MotionWrapper from "../components/MotionWrapper";
 import Carousel3D from "../components/Carousel3D";
 import TypewriterText from "../components/TypewriterText";
@@ -8,12 +7,20 @@ import TechGrid from "../components/TechGrid";
 import LanguageSection from "../components/LanguageSection";
 import WorkExperience from "../components/WorkExperience";
 import ContactSection from "../components/ContactSection";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
+import { Locale, t } from "../i18n";
 
-export default function Page() {
+export default function Page({ params }: { params: { lang: Locale } }) {
+  const { lang } = params;
+
   return (
     <main className="min-h-screen text-white pt-24">
-      <Header />
+      <Header navItems={{
+        experience: t(lang, "nav.experience"),
+        skills: t(lang, "nav.skills"),
+        languages: t(lang, "nav.languages"),
+        contact: t(lang, "nav.contact")
+      }} />
 
       <div className="flex flex-col lg:flex-row items-center justify-center mt-20 gap-8 max-w-6xl mx-auto w-full px-4">
         {/* 3D Carousel - Left Column */}
@@ -26,14 +33,14 @@ export default function Page() {
           <h1 className="mt-0 text-3xl font-bold text-center">
             <div className="min-h-[60px]"> {/* Prevent layout shift */}
               <TypewriterText
-                text="Software Engineer"
+                text={t(lang, "hero.role")}
                 className="block text-5xl text-green-600"
                 delay={1.5}
               />
             </div>
             <div className="mt-2 min-h-[40px]">
               <TypewriterText
-                text="Francisco Xavier Carrascal Esquivel"
+                text={t(lang, "hero.name")}
                 className="block text-3xl text-white"
                 delay={3.5}
               />
@@ -88,7 +95,7 @@ export default function Page() {
                   alt="Fiverr"
                   className="w-5 h-5 brightness-0 invert"
                 />
-                Fiverr
+                {t(lang, "hero.fiverr")}
               </a>
 
               {/* Contact Me Button */}
@@ -105,7 +112,7 @@ export default function Page() {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                Contact me
+                {t(lang, "hero.contact")}
               </a>
             </div>
           </div>
@@ -119,7 +126,7 @@ export default function Page() {
 
       <MotionWrapper useScroll delay={0.1}>
         <h1 id="work-experience" className="mt-12 mb-0 text-center text-4xl font-semibold text-white scroll-mt-48">
-          Work Experience
+          {t(lang, "experience.title")}
         </h1>
       </MotionWrapper>
 
@@ -129,57 +136,7 @@ export default function Page() {
           <div className="absolute top-0 left-1/2 h-full w-0.5 -translate-x-1/2 rounded-full bg-gradient-to-b from-gray-700 via-gray-700 to-transparent" />
         </MotionWrapper>
 
-        <ol className="relative space-y-16">
-          <MotionWrapper useScroll delay={0.1} className="relative grid grid-cols-2">
-            <li className="contents">
-              <div className="col-start-2 pl-8">
-                <time className="block text-xs font-medium text-gray-400">June 2025 — Present</time>
-                <h3 className="text-lg font-extrabold text-green-400">University of Girona — BCDS</h3>
-                <p className="mt-1 text-sm text-gray-300">
-                  Computer engineering internship at the BCDS research group.
-                </p>
-                <ul className="mt-2 list-disc pl-5 text-sm text-gray-300 text-left">
-                  <li>Development of the research group website</li>
-                  <li>Containerization of applications with Docker</li>
-                </ul>
-              </div>
-              <div className="absolute left-1/2 top-0 -translate-x-1/2">
-                <img
-                  src="/imagenes/udg-logo.png"
-                  alt="UdG"
-                  className="h-12 w-12 rounded-full bg-white p-1 object-contain shadow"
-                />
-              </div>
-            </li>
-          </MotionWrapper>
-
-          <MotionWrapper useScroll delay={0.1} className="relative grid grid-cols-2">
-            <li className="contents">
-              <div className="col-start-1 pr-8 text-right">
-                <div className="inline-block text-left">
-                  <time className="block text-xs font-medium text-gray-400">July 2023 - June 2025</time>
-                  <h3 className="text-lg font-extrabold text-green-400">Mercadona S.A.</h3>
-                  <p className="mt-1 text-sm text-gray-300">
-                    Worked as logistics and customer service staff.
-                  </p>
-                  <ul className="mt-2 list-disc pl-5 text-sm text-gray-300 text-left">
-                    <li>Customer service at checkout lines</li>
-                    <li>Product restocking</li>
-                    <li>Product placement on shelves</li>
-                    <li>Support in specific sections such as produce and bakery</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="absolute left-1/2 top-0 -translate-x-1/2">
-                <img
-                  src="/imagenes/mercadona-logo.jpg"
-                  alt="Mercadona"
-                  className="h-12 w-12 rounded-full bg-white p-1 object-contain shadow"
-                />
-              </div>
-            </li>
-          </MotionWrapper>
-        </ol>
+        <WorkExperience experiences={t(lang, "experience.items")} />
       </div>
 
       {/* Section Separator */}
@@ -189,12 +146,16 @@ export default function Page() {
 
       <MotionWrapper useScroll delay={0.1}>
         <h1 id="skills" className="mt-12 mb-0 text-center text-4xl font-semibold text-white scroll-mt-48">
-          Skills & Technologies
+          {t(lang, "skills.title")}
         </h1>
       </MotionWrapper>
 
       <MotionWrapper useScroll delay={0.2} className="max-w-6xl mx-auto mt-20 px-4">
-        <TechGrid />
+        <TechGrid
+          categories={t(lang, "skills.categories")}
+          descriptions={t(lang, "skills.descriptions")}
+          hoverText={t(lang, "skills.hover")}
+        />
       </MotionWrapper>
 
       {/* Section Separator */}
@@ -202,16 +163,24 @@ export default function Page() {
         <div className="h-px bg-gradient-to-r from-transparent via-green-400 to-transparent opacity-30"></div>
       </div>
 
-      <LanguageSection />
+      <LanguageSection
+        title={t(lang, "languages.title")}
+        levels={t(lang, "languages.levels")}
+      />
 
       {/* Section Separator */}
       <div className="max-w-4xl mx-auto mt-24 mb-12">
         <div className="h-px bg-gradient-to-r from-transparent via-green-400 to-transparent opacity-30"></div>
       </div>
 
-      <ContactSection />
+      <ContactSection
+        title={t(lang, "contact.title")}
+        subtitle={t(lang, "contact.subtitle")}
+        form={t(lang, "contact.form")}
+        placeholders={t(lang, "contact.placeholders")}
+      />
 
-      <Footer />
+      <Footer rightsText={t(lang, "footer.rights")} />
     </main>
   );
 }

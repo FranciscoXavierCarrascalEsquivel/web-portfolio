@@ -32,7 +32,7 @@ export default function LanguageSwitcher() {
 
     const languageData: Record<Locale, { name: string; flag: string }> = {
         en: { name: "English", flag: "/flags/en.svg" },
-        es: { name: "Español", flag: "/flags/es.svg" },
+        es: { name: "Español", flag: "/flags/es.png" },
         ca: { name: "Català", flag: "/flags/cat.svg" },
         de: { name: "Deutsch", flag: "/flags/de.svg" },
     };
