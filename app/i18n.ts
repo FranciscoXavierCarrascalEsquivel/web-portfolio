@@ -2,7 +2,102 @@ export const locales = ["en", "es", "ca", "de"] as const;
 export type Locale = typeof locales[number];
 export const defaultLocale: Locale = "ca";
 
-export const dict: Record<Locale, any> = {
+interface Nav {
+    experience: string;
+    skills: string;
+    languages: string;
+    contact: string;
+}
+
+interface Hero {
+    role: string;
+    name: string;
+    fiverr: string;
+    contact: string;
+}
+
+interface ExperienceItem {
+    title: string;
+    company: string;
+    period: string;
+    description: string;
+    skills: string[];
+}
+
+interface Experience {
+    title: string;
+    items: ExperienceItem[];
+}
+
+interface SkillsCategories {
+    all: string;
+    frontend: string;
+    backend: string;
+    languages: string;
+    tools: string;
+}
+
+interface Skills {
+    title: string;
+    categories: SkillsCategories;
+    hover: string;
+    descriptions: Record<string, string>;
+}
+
+interface LanguageLevels {
+    native: string;
+    b2: string;
+    a1: string;
+}
+
+interface Languages {
+    title: string;
+    levels: LanguageLevels;
+}
+
+interface ContactForm {
+    firstName: string;
+    lastName: string;
+    email: string;
+    subject: string;
+    message: string;
+    send: string;
+    sending: string;
+    sent: string;
+    error: string;
+}
+
+interface ContactPlaceholders {
+    firstName: string;
+    lastName: string;
+    email: string;
+    subject: string;
+    message: string;
+}
+
+interface Contact {
+    title: string;
+    subtitle: string;
+    form: ContactForm;
+    placeholders: ContactPlaceholders;
+}
+
+interface Footer {
+    rights: string;
+}
+
+export interface Dictionary {
+    siteTitle: string;
+    nav: Nav;
+    hero: Hero;
+    experience: Experience;
+    skills: Skills;
+    languages: Languages;
+    contact: Contact;
+    footer: Footer;
+}
+
+export const dict: Record<Locale, Dictionary> = {
     en: {
         siteTitle: "Kiko | Portfolio",
         nav: {
@@ -421,12 +516,27 @@ export const dict: Record<Locale, any> = {
     },
 };
 
-export function t(lang: Locale, key: string) {
+export function t<T = unknown>(lang: Locale, key: string): T {
     const keys = key.split('.');
-    let current: any = dict[lang];
+    let current: unknown = dict[lang];
+
     for (const k of keys) {
-        if (current === undefined) return key;
-        current = current[k];
+        if (current === undefined || current === null) {
+            // si no trobem la clau, retornem la key com a fallback
+            return key as unknown as T;
+        }
+
+        if (typeof current !== "object") {
+            // si ens trobem un primitiu abans d’acabar el path, també fem fallback
+            return key as unknown as T;
+        }
+
+        current = (current as Record<string, unknown>)[k];
     }
-    return current ?? key;
+
+    if (current === undefined) {
+        return key as unknown as T;
+    }
+
+    return current as T;
 }
