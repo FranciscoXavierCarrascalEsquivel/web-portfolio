@@ -68,12 +68,12 @@ export default function TechGrid({ categories: catLabels, descriptions, hoverTex
     return (
         <div className="flex flex-col items-center w-full">
             {/* Category Tabs */}
-            <div className="flex flex-wrap justify-center gap-2 mb-12 p-1 bg-gray-100 dark:bg-gray-900/50 backdrop-blur-sm rounded-full border border-gray-200 dark:border-gray-800 transition-colors duration-300">
+            <div className="flex flex-wrap justify-center gap-2 mb-12 p-1 bg-gray-900/50 backdrop-blur-sm rounded-full border border-gray-800">
                 {categories.map((cat) => (
                     <button
                         key={cat.id}
                         onClick={() => setActiveCategory(cat.id)}
-                        className={`relative px-3 py-1 rounded-full text-xs font-medium transition-colors duration-300 ${activeCategory === cat.id ? "text-black" : "text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
+                        className={`relative px-3 py-1 rounded-full text-xs font-medium transition-colors duration-300 ${activeCategory === cat.id ? "text-black" : "text-gray-400 hover:text-white"
                             }`}
                     >
                         {activeCategory === cat.id && (
@@ -109,7 +109,7 @@ export default function TechGrid({ categories: catLabels, descriptions, hoverTex
                                 onMouseLeave={() => setHoveredTech(null)}
                             >
                                 <div
-                                    className="w-full h-full rounded-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] border border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-gray-900/30 backdrop-blur-sm hover:border-green-400 p-1.5 md:p-3"
+                                    className="w-full h-full rounded-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] border border-gray-800 bg-gray-900/30 backdrop-blur-sm hover:border-green-400 p-1.5 md:p-3"
                                     style={{
                                         // Subtle colored glow based on brand color
                                         boxShadow: hoveredTech?.name === tech.name ? `0 0 20px ${tech.color}40` : 'none'
@@ -127,7 +127,7 @@ export default function TechGrid({ categories: catLabels, descriptions, hoverTex
                 </motion.div>
 
                 {/* Description Panel (Sticky on Desktop) */}
-                <div className="w-full lg:w-80 lg:sticky lg:top-32 min-h-[200px] p-6 rounded-2xl bg-white/50 dark:bg-gray-900/50 backdrop-blur-md border border-gray-200 dark:border-gray-800 flex flex-col justify-center items-center text-center transition-all duration-300">
+                <div className="w-full lg:w-80 lg:sticky lg:top-32 min-h-[200px] p-6 rounded-2xl bg-gray-900/50 backdrop-blur-md border border-gray-800 flex flex-col justify-center items-center text-center">
                     <AnimatePresence mode="wait">
                         {hoveredTech ? (
                             <motion.div
@@ -137,14 +137,14 @@ export default function TechGrid({ categories: catLabels, descriptions, hoverTex
                                 exit={{ opacity: 0, y: -10 }}
                                 className="flex flex-col items-center"
                             >
-                                <div className="w-16 h-16 mb-4 p-3 rounded-xl bg-gray-100 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 transition-colors duration-300">
+                                <div className="w-16 h-16 mb-4 p-3 rounded-xl bg-gray-800/50 border border-gray-700">
                                     <img src={hoveredTech.logo} alt={hoveredTech.name} className="w-full h-full object-contain" />
                                 </div>
-                                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-300">{hoveredTech.name}</h3>
-                                <span className="px-3 py-1 mb-4 text-xs font-mono text-green-600 dark:text-green-400 bg-green-400/10 rounded-full border border-green-400/20">
+                                <h3 className="text-2xl font-bold text-white mb-2">{hoveredTech.name}</h3>
+                                <span className="px-3 py-1 mb-4 text-xs font-mono text-green-400 bg-green-400/10 rounded-full border border-green-400/20">
                                     {categories.find(c => c.id === hoveredTech.category)?.label}
                                 </span>
-                                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed transition-colors duration-300">
+                                <p className="text-gray-400 text-sm leading-relaxed">
                                     {descriptions[hoveredTech.name] || hoveredTech.name}
                                 </p>
                             </motion.div>
@@ -155,7 +155,7 @@ export default function TechGrid({ categories: catLabels, descriptions, hoverTex
                                 exit={{ opacity: 0 }}
                                 className="text-gray-500 flex flex-col items-center"
                             >
-                                <div className="w-12 h-12 mb-4 rounded-full border-2 border-dashed border-gray-300 dark:border-gray-700 flex items-center justify-center transition-colors duration-300">
+                                <div className="w-12 h-12 mb-4 rounded-full border-2 border-dashed border-gray-700 flex items-center justify-center">
                                     <span className="text-xl">👆</span>
                                 </div>
                                 <p>{hoverText}</p>

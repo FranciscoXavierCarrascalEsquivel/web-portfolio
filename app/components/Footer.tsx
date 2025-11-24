@@ -8,9 +8,9 @@ interface FooterProps {
 
 export default function Footer({ rightsText }: FooterProps) {
     return (
-        <footer className="w-full py-8 mt-20 border-t border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-black/50 backdrop-blur-sm transition-colors duration-300">
+        <footer className="w-full py-8 mt-20 border-t border-gray-800 bg-black/50 backdrop-blur-sm">
             <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-                <div className="text-gray-600 dark:text-gray-400 text-sm transition-colors duration-300">
+                <div className="text-gray-400 text-sm">
                     © {new Date().getFullYear()} Francisco Xavier Carrascal Esquivel. {rightsText}
                 </div>
 
@@ -19,7 +19,7 @@ export default function Footer({ rightsText }: FooterProps) {
                         href="https://www.linkedin.com/in/francisco-xavier-carrascal-esquivel-50b680370/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors"
+                        className="text-gray-400 hover:text-green-400 transition-colors"
                     >
                         <Linkedin className="w-5 h-5" />
                     </a>

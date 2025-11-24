@@ -25,7 +25,7 @@ export default function Header({ navItems }: HeaderProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-black/50 backdrop-blur-md transition-colors duration-300">
+        <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-gray-800 bg-black/50 backdrop-blur-md">
             <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
                 <div className="flex items-center space-x-8">
                     <div className="flex items-center space-x-2">
@@ -45,7 +45,7 @@ export default function Header({ navItems }: HeaderProps) {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
                         >
-                            <h1 className="text-xl font-bold hidden md:block text-gray-900 dark:text-white transition-colors duration-300">
+                            <h1 className="text-xl font-bold hidden md:block text-white">
                                 Francisco Xavier Carrascal Esquivel
                             </h1>
                         </MotionWrapper>
@@ -68,7 +68,7 @@ export default function Header({ navItems }: HeaderProps) {
                                         const element = document.getElementById(item.id);
                                         element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                                     }}
-                                    className="relative px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 transition-colors duration-300 hover:text-black dark:hover:text-white group"
+                                    className="relative px-2 py-1 text-xs font-medium text-gray-300 hover:text-white group"
                                 >
                                     <span className="relative z-10">{item.label}</span>
                                     <span className="absolute inset-0 bg-green-500/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center border border-green-500/20 backdrop-blur-sm"></span>
@@ -94,7 +94,7 @@ export default function Header({ navItems }: HeaderProps) {
                         <LanguageSwitcher />
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="p-2 text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+                            className="p-2 text-gray-300 hover:text-white transition-colors"
                             aria-label="Toggle menu"
                         >
                             <div className="w-6 h-5 relative flex flex-col justify-between">
@@ -108,7 +108,7 @@ export default function Header({ navItems }: HeaderProps) {
             </div>
 
             {/* Mobile Menu Overlay */}
-            <div className={`md:hidden absolute top-full left-0 w-full bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800 transition-all duration-300 overflow-hidden ${isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
+            <div className={`md:hidden absolute top-full left-0 w-full bg-black border-b border-gray-800 transition-all duration-300 overflow-hidden ${isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
                 <nav className="flex flex-col p-4 space-y-4">
                     {items.map((item) => (
                         <a
@@ -120,7 +120,7 @@ export default function Header({ navItems }: HeaderProps) {
                                 const element = document.getElementById(item.id);
                                 element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                             }}
-                            className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-green-500 dark:hover:text-green-400 transition-colors"
+                            className="text-lg font-medium text-gray-300 hover:text-green-400 transition-colors"
                         >
                             {item.label}
                         </a>

@@ -40,9 +40,9 @@ export default function WorkExperience({ experiences }: WorkExperienceProps) {
                         <div className="absolute left-8 md:left-1/2 -ml-3 w-6 h-6 rounded-full border-4 border-white dark:border-black bg-green-500 shadow-sm z-10" />
 
                         {/* Content Card */}
-                        <div className="ml-20 md:ml-0 md:w-[45%] bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow duration-300">
+                        <div className="ml-20 md:ml-0 md:w-[45%] bg-gray-900 p-6 rounded-2xl border border-gray-800 shadow-sm hover:shadow-md transition-shadow duration-300">
                             <div className="flex items-center gap-4 mb-4">
-                                <div className="w-12 h-12 rounded-lg overflow-hidden bg-white border border-gray-100 dark:border-gray-800 flex-shrink-0">
+                                <div className="w-12 h-12 rounded-lg overflow-hidden bg-white border border-gray-800 flex-shrink-0">
                                     <img
                                         src={exp.logo}
                                         alt={`${exp.company} logo`}
@@ -50,20 +50,20 @@ export default function WorkExperience({ experiences }: WorkExperienceProps) {
                                     />
                                 </div>
                                 <div>
-                                    <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight">
+                                    <h3 className="text-lg font-bold text-white leading-tight">
                                         {exp.title}
                                     </h3>
-                                    <div className="text-green-600 dark:text-green-400 font-medium text-sm">
+                                    <div className="text-green-400 font-medium text-sm">
                                         {exp.company}
                                     </div>
                                 </div>
                             </div>
 
-                            <span className="inline-block px-2 py-1 mb-3 text-xs font-mono text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded">
+                            <span className="inline-block px-2 py-1 mb-3 text-xs font-mono text-gray-400 bg-gray-800 rounded">
                                 {exp.period}
                             </span>
 
-                            <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 leading-relaxed">
+                            <p className="text-gray-300 text-sm mb-4 leading-relaxed">
                                 {exp.description}
                             </p>
 
@@ -71,7 +71,7 @@ export default function WorkExperience({ experiences }: WorkExperienceProps) {
                                 {exp.skills.map((skill) => (
                                     <span
                                         key={skill}
-                                        className="px-2 py-1 text-xs font-medium rounded-full bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800"
+                                        className="px-2 py-1 text-xs font-medium rounded-full bg-green-900/20 text-green-300 border border-green-800"
                                     >
                                         {skill}
                                     </span>

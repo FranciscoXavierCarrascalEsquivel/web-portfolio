@@ -43,7 +43,7 @@ export default function LanguageSection({ title, levels }: LanguageSectionProps)
     return (
         <section id="languages" className="w-full max-w-6xl mx-auto px-4 py-20 scroll-mt-24">
             <MotionWrapper useScroll delay={0.1}>
-                <h2 className="text-4xl font-bold text-center mb-16 text-gray-900 dark:text-white transition-colors duration-300">
+                <h2 className="text-4xl font-bold text-center mb-16 text-white">
                     {title}
                 </h2>
             </MotionWrapper>
@@ -57,8 +57,8 @@ export default function LanguageSection({ title, levels }: LanguageSectionProps)
                     >
                         <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-500" />
 
-                        <div className="relative h-full bg-white dark:bg-gray-900 rounded-2xl p-6 flex flex-col items-center justify-center border border-gray-200 dark:border-gray-800 transition-transform duration-300 group-hover:-translate-y-2">
-                            <div className="w-20 h-20 mb-6 rounded-full overflow-hidden shadow-lg border-4 border-gray-100 dark:border-gray-800">
+                        <div className="relative h-full bg-gray-900 rounded-2xl p-6 flex flex-col items-center justify-center border border-gray-800 transition-transform duration-300 group-hover:-translate-y-2">
+                            <div className="w-20 h-20 mb-6 rounded-full overflow-hidden shadow-lg border-4 border-gray-800">
                                 <img
                                     src={lang.flag}
                                     alt={`${lang.name} flag`}
@@ -66,11 +66,11 @@ export default function LanguageSection({ title, levels }: LanguageSectionProps)
                                 />
                             </div>
 
-                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                            <h3 className="text-2xl font-bold text-white mb-2">
                                 {lang.name}
                             </h3>
 
-                            <span className="px-4 py-1.5 rounded-full text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 text-center">
+                            <span className="px-4 py-1.5 rounded-full text-sm font-medium bg-gray-800 text-gray-300 border border-gray-700 text-center">
                                 {lang.level}
                             </span>
                         </div>

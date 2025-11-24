@@ -41,34 +41,34 @@ export default function LanguageSwitcher() {
         <div className="relative" ref={dropdownRef}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-900 border border-gray-800 hover:bg-gray-800 transition-colors"
                 aria-label="Change language"
             >
-                <div className="w-5 h-5 rounded-full overflow-hidden border border-gray-200 dark:border-gray-700">
+                <div className="w-5 h-5 rounded-full overflow-hidden border border-gray-700">
                     <img
                         src={languageData[currentLocale].flag}
                         alt={`${languageData[currentLocale].name} flag`}
                         className="w-full h-full object-cover"
                     />
                 </div>
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-200 uppercase">
+                <span className="text-sm font-medium text-gray-200 uppercase">
                     {currentLocale}
                 </span>
                 <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
             </button>
 
             {isOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-800 py-1 overflow-hidden z-50">
+                <div className="absolute right-0 mt-2 w-48 bg-gray-900 rounded-lg shadow-xl border border-gray-800 py-1 overflow-hidden z-50">
                     {locales.map((locale) => (
                         <button
                             key={locale}
                             onClick={() => handleLanguageChange(locale)}
                             className={`w-full text-left px-4 py-2.5 text-sm transition-colors flex items-center gap-3 ${currentLocale === locale
-                                ? "bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 font-medium"
-                                : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                                ? "bg-green-900/20 text-green-400 font-medium"
+                                : "text-gray-300 hover:bg-gray-800"
                                 }`}
                         >
-                            <div className="w-5 h-5 rounded-full overflow-hidden border border-gray-200 dark:border-gray-700 flex-shrink-0">
+                            <div className="w-5 h-5 rounded-full overflow-hidden border border-gray-700 flex-shrink-0">
                                 <img
                                     src={languageData[locale].flag}
                                     alt={`${languageData[locale].name} flag`}
