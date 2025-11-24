@@ -93,7 +93,7 @@ export default function TechGrid({ categories: catLabels, descriptions, hoverTex
                 {/* Grid */}
                 <motion.div
                     layout
-                    className="flex-1 grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-4 w-full"
+                    className="flex-1 grid grid-cols-5 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-6 gap-2 md:gap-4 w-full"
                 >
                     <AnimatePresence mode="popLayout">
                         {filteredTechs.map((tech) => (
@@ -109,7 +109,7 @@ export default function TechGrid({ categories: catLabels, descriptions, hoverTex
                                 onMouseLeave={() => setHoveredTech(null)}
                             >
                                 <div
-                                    className="w-full h-full rounded-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] border border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-gray-900/30 backdrop-blur-sm hover:border-green-400 p-3"
+                                    className="w-full h-full rounded-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] border border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-gray-900/30 backdrop-blur-sm hover:border-green-400 p-1.5 md:p-3"
                                     style={{
                                         // Subtle colored glow based on brand color
                                         boxShadow: hoveredTech?.name === tech.name ? `0 0 20px ${tech.color}40` : 'none'

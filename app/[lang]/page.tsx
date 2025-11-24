@@ -14,7 +14,7 @@ export default function Page({ params }: { params: { lang: Locale } }) {
   const { lang } = params;
 
   return (
-    <main className="min-h-screen text-white pt-24">
+    <main className="min-h-screen text-white pt-16 md:pt-24">
       <Header navItems={{
         experience: t(lang, "nav.experience"),
         skills: t(lang, "nav.skills"),
@@ -22,26 +22,26 @@ export default function Page({ params }: { params: { lang: Locale } }) {
         contact: t(lang, "nav.contact")
       }} />
 
-      <div className="flex flex-col lg:flex-row items-center justify-center mt-20 gap-8 max-w-6xl mx-auto w-full px-4">
+      <div className="flex flex-col lg:flex-row items-center justify-center mt-2 md:mt-0 gap-2 md:gap-8 max-w-6xl mx-auto w-full px-4 min-h-[calc(100svh-100px)] md:min-h-[calc(100vh-100px)]">
         {/* 3D Carousel - Left Column */}
-        <MotionWrapper delay={0.2} className="w-full lg:w-1/2 h-[500px]">
+        <MotionWrapper delay={0.2} className="w-full lg:w-1/2 h-[40svh] md:h-[500px]">
           <Carousel3D />
         </MotionWrapper>
 
         {/* Text Content - Right Column */}
         <div className="flex flex-col items-center w-full lg:w-1/2">
           <h1 className="mt-0 text-3xl font-bold text-center">
-            <div className="min-h-[60px]"> {/* Prevent layout shift */}
+            <div className="min-h-[40px] md:min-h-[60px]"> {/* Prevent layout shift */}
               <TypewriterText
                 text={t(lang, "hero.role")}
-                className="block text-5xl text-green-600"
+                className="block text-3xl md:text-5xl text-green-600"
                 delay={1.5}
               />
             </div>
-            <div className="mt-2 min-h-[40px]">
+            <div className="mt-2 min-h-[30px] md:min-h-[40px]">
               <TypewriterText
                 text={t(lang, "hero.name")}
-                className="block text-3xl text-white"
+                className="block text-xl md:text-3xl text-white"
                 delay={3.5}
               />
             </div>

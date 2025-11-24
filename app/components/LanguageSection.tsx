@@ -48,7 +48,7 @@ export default function LanguageSection({ title, levels }: LanguageSectionProps)
                 </h2>
             </MotionWrapper>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
                 {languages.map((lang, index) => (
                     <MotionWrapper
                         key={lang.name}
@@ -70,7 +70,7 @@ export default function LanguageSection({ title, levels }: LanguageSectionProps)
                                 {lang.name}
                             </h3>
 
-                            <span className="px-4 py-1.5 rounded-full text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700">
+                            <span className="px-4 py-1.5 rounded-full text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 text-center">
                                 {lang.level}
                             </span>
                         </div>

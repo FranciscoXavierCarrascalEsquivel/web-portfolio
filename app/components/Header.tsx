@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 import MotionWrapper from "./MotionWrapper";
 import LanguageSwitcher from "./LanguageSwitcher";
 
@@ -20,6 +21,8 @@ export default function Header({ navItems }: HeaderProps) {
         { label: navItems.languages, id: "languages" },
         { label: navItems.contact, id: "contact" }
     ];
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-black/50 backdrop-blur-md transition-colors duration-300">
@@ -48,7 +51,7 @@ export default function Header({ navItems }: HeaderProps) {
                         </MotionWrapper>
                     </div>
 
-                    {/* Navigation Links */}
+                    {/* Desktop Navigation Links */}
                     <nav className="hidden md:flex items-center space-x-1">
                         {items.map((item, index) => (
                             <MotionWrapper
@@ -75,15 +78,54 @@ export default function Header({ navItems }: HeaderProps) {
                     </nav>
                 </div>
 
-                <MotionWrapper
-                    className="px-4 flex items-center gap-4"
-                    delay={0.5}
-                    initial={{ opacity: 0, y: -50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                >
-                    <LanguageSwitcher />
-                </MotionWrapper>
+                <div className="flex items-center gap-4">
+                    <MotionWrapper
+                        className="px-4 hidden md:flex items-center gap-4"
+                        delay={0.5}
+                        initial={{ opacity: 0, y: -50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <LanguageSwitcher />
+                    </MotionWrapper>
+
+                    {/* Mobile Menu Button */}
+                    <div className="md:hidden flex items-center gap-4">
+                        <LanguageSwitcher />
+                        <button
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            className="p-2 text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+                            aria-label="Toggle menu"
+                        >
+                            <div className="w-6 h-5 relative flex flex-col justify-between">
+                                <span className={`w-full h-0.5 bg-current transform transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
+                                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? "opacity-0" : "opacity-100"}`} />
+                                <span className={`w-full h-0.5 bg-current transform transition-all duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-2.5" : ""}`} />
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Mobile Menu Overlay */}
+            <div className={`md:hidden absolute top-full left-0 w-full bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800 transition-all duration-300 overflow-hidden ${isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
+                <nav className="flex flex-col p-4 space-y-4">
+                    {items.map((item) => (
+                        <a
+                            key={item.label}
+                            href={`#${item.id}`}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setIsMenuOpen(false);
+                                const element = document.getElementById(item.id);
+                                element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }}
+                            className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-green-500 dark:hover:text-green-400 transition-colors"
+                        >
+                            {item.label}
+                        </a>
+                    ))}
+                </nav>
             </div>
         </header>
     );

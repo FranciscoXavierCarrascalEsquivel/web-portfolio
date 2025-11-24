@@ -35,7 +35,7 @@ export default function InteractiveBackground() {
                     background: "radial-gradient(circle, rgba(74, 222, 128, 0.4) 0%, rgba(0,0,0,0) 70%)",
                 }}
             />
-            <div className="absolute inset-0 bg-white/80 dark:bg-transparent transition-colors duration-300" />
+            <div className="absolute inset-0 bg-transparent" />
         </div>
     );
 }
