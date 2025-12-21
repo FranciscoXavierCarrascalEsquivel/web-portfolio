@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+
 import MotionWrapper from "./MotionWrapper";
 
 interface Experience {

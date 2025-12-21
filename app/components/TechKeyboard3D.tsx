@@ -44,7 +44,7 @@ function Key({ tech }: KeyProps) {
     const [hovered, setHovered] = useState(false);
     const [clicked, setClicked] = useState(false);
 
-    useFrame((state, delta) => {
+    useFrame((_state, _delta) => {
         if (meshRef.current) {
             const targetY = clicked ? -0.1 : hovered ? 0.2 : 0;
             meshRef.current.position.y += (targetY - meshRef.current.position.y) * 0.2;
