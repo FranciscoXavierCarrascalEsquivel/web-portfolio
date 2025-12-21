@@ -8,7 +8,11 @@ import WorkExperience from "../components/WorkExperience";
 import ContactSection from "../components/ContactSection";
 import ProjectsSection from "../components/ProjectsSection";
 import { Github, Linkedin } from "lucide-react";
-import { Locale, t } from "../i18n";
+import { Locale, t, locales } from "../i18n";
+
+export async function generateStaticParams() {
+  return locales.map((lang) => ({ lang }));
+}
 
 export default async function Page({ params }: { params: Promise<{ lang: Locale }> }) {
   const { lang } = await params;
