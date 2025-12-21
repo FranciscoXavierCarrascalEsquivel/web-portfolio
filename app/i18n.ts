@@ -131,6 +131,7 @@ interface ProjectDetails {
     accessCredentials?: string;
     username?: string;
     password?: string;
+    visitProject?: string;
 }
 
 export const dict: Record<Locale, Dictionary> = {
@@ -267,7 +268,7 @@ export const dict: Record<Locale, Dictionary> = {
                     title: "Self-Hosted Media Platform",
                     shortDescription: "Self-hosted multimedia streaming platform deployed on a Linux server, publicly accessible via own domain and reverse proxy.",
                     longDescription: "This project involves the deployment of a complete centralized content management and consumption platform on a cloud server, using Docker containers and self-hosted services. The solution allows downloading, organizing, and playing content centrally, with remote access through a personal domain. It emphasizes infrastructure, systems, and Linux environments, including container configuration, networking, DNS, reverse proxying, and the integration of multiple services in a production environment.",
-                    technologies: ["Ubuntu Server", "Docker", "Caddy", "Jellyfin", "Self-hosting"],
+                    technologies: ["Ubuntu Server", "Docker", "Caddy", "Jellyfin", "Jellyseerr", "Prowlarr", "Radarr", "Sonarr", "qBittorrent", "Self-hosting"],
                     image: "/imagenes/project-media.jpg",
                     credentials: {
                         username: "test",
@@ -285,7 +286,8 @@ export const dict: Record<Locale, Dictionary> = {
             copyLink: "Copy Link",
             accessCredentials: "Access Credentials",
             username: "Username",
-            password: "Password"
+            password: "Password",
+            visitProject: "Visit Project"
         }
     },
     es: {
@@ -421,7 +423,7 @@ export const dict: Record<Locale, Dictionary> = {
                     title: "Self-Hosted Media Platform",
                     shortDescription: "Plataforma de streaming multimedia autohosted desplegada en un servidor Linux, accesible públicamente mediante dominio propio y proxy inverso.",
                     longDescription: "Este proyecto consiste en el despliegue de una plataforma completa de gestión y consumo de contenido multimedia en un servidor cloud, utilizando contenedores Docker y servicios autohosted. La solución permite descargar, organizar y reproducir contenido de manera centralizada. El proyecto pone énfasis en infraestructura, sistemas y entornos Linux, incluyendo la configuración de contenedores, red, DNS, proxy inverso y la integración de múltiples servicios.",
-                    technologies: ["Ubuntu Server", "Docker", "Caddy", "Jellyfin", "Self-hosting"],
+                    technologies: ["Ubuntu Server", "Docker", "Caddy", "Jellyfin", "Jellyseerr", "Prowlarr", "Radarr", "Sonarr", "qBittorrent", "Self-hosting"],
                     image: "/imagenes/project-media.jpg",
                     credentials: {
                         username: "test",
@@ -439,7 +441,8 @@ export const dict: Record<Locale, Dictionary> = {
             copyLink: "Copiar enlace",
             accessCredentials: "Credenciales de acceso",
             username: "Usuario",
-            password: "Contraseña"
+            password: "Contraseña",
+            visitProject: "Visitar Proyecto"
         }
     },
     ca: {
@@ -575,7 +578,7 @@ export const dict: Record<Locale, Dictionary> = {
                     title: "Self-Hosted Media Platform",
                     shortDescription: "Plataforma de streaming multimèdia autohosted desplegada en un servidor Linux, accessible públicament mitjançant domini propi i reverse proxy.",
                     longDescription: "Aquest projecte consisteix en el desplegament d’una plataforma completa de gestió i consum de contingut multimèdia en un servidor cloud, utilitzant contenidors Docker i serveis autohosted. La solució permet descarregar, organitzar i reproduir contingut de manera centralitzada. El projecte posa èmfasi en infraestructura, sistemes i entorns Linux, incloent la configuració de contenidors, xarxa, DNS, reverse proxy i la integració de múltiples serveis.",
-                    technologies: ["Ubuntu Server", "Docker", "Caddy", "Jellyfin", "Self-hosting"],
+                    technologies: ["Ubuntu Server", "Docker", "Caddy", "Jellyfin", "Jellyseerr", "Prowlarr", "Radarr", "Sonarr", "qBittorrent", "Self-hosting"],
                     image: "/imagenes/project-media.jpg",
                     credentials: {
                         username: "test",
@@ -593,7 +596,8 @@ export const dict: Record<Locale, Dictionary> = {
             copyLink: "Copiar enllaç",
             accessCredentials: "Credencials d'accés",
             username: "Usuari",
-            password: "Contrasenya"
+            password: "Contrasenya",
+            visitProject: "Visitar projecte"
         }
     },
     de: {
@@ -729,7 +733,7 @@ export const dict: Record<Locale, Dictionary> = {
                     title: "Self-Hosted Media Platform",
                     shortDescription: "Selbst gehostete Multimedia-Streaming-Plattform auf einem Linux-Server, öffentlich zugänglich über eigene Domain und Reverse Proxy.",
                     longDescription: "Dieses Projekt beinhaltet die Bereitstellung einer kompletten zentralisierten Plattform für Content-Management und -Konsum auf einem Cloud-Server unter Verwendung von Docker-Containern und selbst gehosteten Diensten. Die Lösung ermöglicht das zentrale Herunterladen, Organisieren und Abspielen von Inhalten mit Fernzugriff über eine persönliche Domain. Der Schwerpunkt liegt auf Infrastruktur, Systemen und Linux-Umgebungen.",
-                    technologies: ["Ubuntu Server", "Docker", "Caddy", "Jellyfin", "Self-hosting"],
+                    technologies: ["Ubuntu Server", "Docker", "Caddy", "Jellyfin", "Jellyseerr", "Prowlarr", "Radarr", "Sonarr", "qBittorrent", "Self-hosting"],
                     image: "/imagenes/project-media.jpg",
                     credentials: {
                         username: "test",
@@ -747,7 +751,8 @@ export const dict: Record<Locale, Dictionary> = {
             copyLink: "Link kopieren",
             accessCredentials: "Zugangsdaten",
             username: "Benutzer",
-            password: "Passwort"
+            password: "Passwort",
+            visitProject: "Projekt Besuchen"
         }
     },
 };

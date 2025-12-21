@@ -82,9 +82,23 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
                     <div className="lg:col-span-2 space-y-8">
                         <MotionWrapper delay={0.3}>
                             <h2 className="text-2xl font-semibold text-green-400 mb-4">{t(lang, "projectDetails.about")}</h2>
-                            <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed whitespace-pre-line">
+                            <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed whitespace-pre-line text-justify">
                                 {project.longDescription}
                             </div>
+
+                            {project.url && (
+                                <div className="pt-8">
+                                    <a
+                                        href={project.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-3 px-8 py-4 bg-green-600 hover:bg-green-500 text-white font-bold text-lg rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25 w-full md:w-auto justify-center"
+                                    >
+                                        <ExternalLink className="w-5 h-5" />
+                                        {t(lang, "projectDetails.visitProject")}
+                                    </a>
+                                </div>
+                            )}
                         </MotionWrapper>
                     </div>
 

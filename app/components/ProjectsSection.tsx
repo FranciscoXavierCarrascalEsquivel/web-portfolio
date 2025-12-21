@@ -76,7 +76,7 @@ export default function ProjectsSection({ title, projects, lang }: ProjectsSecti
                                         {project.title}
                                     </h3>
 
-                                    <p className="text-gray-400 text-sm mb-4 line-clamp-3 mb-auto">
+                                    <p className="text-gray-400 text-sm mb-4 mb-auto">
                                         {project.shortDescription}
                                     </p>
 
