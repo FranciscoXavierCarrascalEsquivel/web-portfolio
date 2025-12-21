@@ -2,8 +2,22 @@
 
 import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Sphere, MeshDistortMaterial, Float, Stars, OrbitControls } from "@react-three/drei";
+import { Sphere, MeshDistortMaterial, Float, Stars } from "@react-three/drei";
 import * as THREE from "three";
+
+function AutoRotate() {
+    useFrame((state) => {
+        const time = state.clock.getElapsedTime();
+        // Orbit camera around 0,0,0
+        // Radius = 6 (matches original camera position)
+        const radius = 6;
+        const speed = 0.2; // autoRotateSpeed=0.5 approx
+        state.camera.position.x = Math.sin(time * speed) * radius;
+        state.camera.position.z = Math.cos(time * speed) * radius;
+        state.camera.lookAt(0, 0, 0);
+    });
+    return null;
+}
 
 function AnimatedSphere() {
     const sphereRef = useRef<THREE.Mesh>(null);
@@ -58,7 +72,8 @@ export default function ContactGlobe() {
                 <pointLight position={[10, 10, 10]} intensity={1.5} color="#4ade80" />
                 <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
                 <AnimatedSphere />
-                <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+                {/* Replaced OrbitControls with manual rotation to prevent runtime errors */}
+                <AutoRotate />
             </Canvas>
         </div>
     );

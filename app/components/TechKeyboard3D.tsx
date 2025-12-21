@@ -1,10 +1,21 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Text } from "@react-three/drei";
+import { Text } from "@react-three/drei";
 import { useRef, useState } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
+
+function AutoRotate() {
+    useFrame((state) => {
+        const time = state.clock.getElapsedTime();
+        // Gentle rotation
+        state.camera.position.x = Math.sin(time * 0.2) * 5;
+        state.camera.position.z = Math.cos(time * 0.2) * 5;
+        state.camera.lookAt(0, 0, 0);
+    });
+    return null;
+}
 
 const technologies = [
     // Row 1
@@ -86,11 +97,8 @@ export default function TechKeyboard3D() {
                     <Key key={i} tech={tech} />
                 ))}
 
-                <OrbitControls
-                    enableZoom={false}
-                    maxPolarAngle={Math.PI / 2}
-                    minPolarAngle={Math.PI / 4}
-                />
+                {/* Manual rotation to avoid OrbitControls event listener issues */}
+                <AutoRotate />
             </Canvas>
         </div>
     );

@@ -3,6 +3,7 @@ export type Locale = typeof locales[number];
 export const defaultLocale: Locale = "ca";
 
 interface Nav {
+    projects: string;
     experience: string;
     skills: string;
     languages: string;
@@ -82,6 +83,28 @@ interface Contact {
     placeholders: ContactPlaceholders;
 }
 
+interface ProjectItem {
+    slug: string;
+    title: string;
+    shortDescription: string;
+    longDescription: string; // Using longDescription for the detail page
+    technologies: string[];
+    image: string;
+    credentials?: ProjectCredentials;
+    url?: string;
+}
+
+interface ProjectCredentials {
+    username?: string;
+    password?: string;
+    title?: string;
+}
+
+interface Projects {
+    title: string;
+    items: ProjectItem[];
+}
+
 interface Footer {
     rights: string;
 }
@@ -95,12 +118,26 @@ export interface Dictionary {
     languages: Languages;
     contact: Contact;
     footer: Footer;
+    projects: Projects;
+    projectDetails: ProjectDetails;
+}
+
+interface ProjectDetails {
+    back: string;
+    about: string;
+    technologies: string;
+    share: string;
+    copyLink: string;
+    accessCredentials?: string;
+    username?: string;
+    password?: string;
 }
 
 export const dict: Record<Locale, Dictionary> = {
     en: {
         siteTitle: "Kiko | Portfolio",
         nav: {
+            projects: "Projects",
             experience: "Work Experience",
             skills: "Skills",
             languages: "Languages",
@@ -200,11 +237,61 @@ export const dict: Record<Locale, Dictionary> = {
         },
         footer: {
             rights: "All rights reserved."
+        },
+        projects: {
+            title: "Projects",
+            items: [
+                {
+                    slug: "personal-portfolio",
+                    title: "Personal Portfolio Website",
+                    shortDescription: "Personal web portfolio designed as a central platform to showcase real engineering projects and technical experience.",
+                    longDescription: "This project consists of the design and development of my own professional portfolio, conceived as an active technical presentation tool rather than just a static website. The portfolio is structured to facilitate reading for recruiters and technical profiles, showcasing real projects with context, technical decisions, and professional value. A clear structure, simple navigation, and direct content have been prioritized to ensure anyone can quickly understand my work, the technologies I master, and how I apply my knowledge in practical projects.",
+                    technologies: ["Next.js", "React", "Tailwind CSS", "Vercel", "SEO"],
+                    image: "/imagenes/project-portfolio.jpg"
+                },
+                {
+                    slug: "ai-chatbot",
+                    title: "AI Knowledge Chatbot",
+                    shortDescription: "Artificial intelligence-based chatbot capable of answering questions in natural language through a web interface.",
+                    longDescription: "In this project, a chatbot based on the phi-4-mini model was developed, integrated into a custom web frontend. The system allows users to interact with an AI using natural language, with contextualized responses based on available information. The focus was on the practical integration of a language model into a web application, working on frontend–AI communication, interface design, and chatbot behavior with real inquiries. It demonstrates the ability to integrate AI models into real environments.",
+                    technologies: ["phi-4-mini", "LLM", "HTML/CSS/JS", "Frontend-AI Integration"],
+                    image: "/imagenes/project-ai.jpg",
+                    credentials: {
+                        username: "test@test.com",
+                        password: "test123"
+                    },
+                    url: "https://ia.fraviercaes.es"
+                },
+                {
+                    slug: "media-platform",
+                    title: "Self-Hosted Media Platform",
+                    shortDescription: "Self-hosted multimedia streaming platform deployed on a Linux server, publicly accessible via own domain and reverse proxy.",
+                    longDescription: "This project involves the deployment of a complete centralized content management and consumption platform on a cloud server, using Docker containers and self-hosted services. The solution allows downloading, organizing, and playing content centrally, with remote access through a personal domain. It emphasizes infrastructure, systems, and Linux environments, including container configuration, networking, DNS, reverse proxying, and the integration of multiple services in a production environment.",
+                    technologies: ["Ubuntu Server", "Docker", "Caddy", "Jellyfin", "Self-hosting"],
+                    image: "/imagenes/project-media.jpg",
+                    credentials: {
+                        username: "test",
+                        password: "test123"
+                    },
+                    url: "https://jellyfin.fraviercaes.es"
+                }
+            ]
+        },
+        projectDetails: {
+            back: "Back to Portfolio",
+            about: "About the Project",
+            technologies: "Technologies",
+            share: "Share",
+            copyLink: "Copy Link",
+            accessCredentials: "Access Credentials",
+            username: "Username",
+            password: "Password"
         }
     },
     es: {
         siteTitle: "Kiko | Portfolio",
         nav: {
+            projects: "Proyectos",
             experience: "Experiencia",
             skills: "Habilidades",
             languages: "Idiomas",
@@ -304,11 +391,61 @@ export const dict: Record<Locale, Dictionary> = {
         },
         footer: {
             rights: "Todos los derechos reservados."
+        },
+        projects: {
+            title: "Proyectos",
+            items: [
+                {
+                    slug: "personal-portfolio",
+                    title: "Personal Portfolio Website",
+                    shortDescription: "Portafolio web personal diseñado como plataforma central para mostrar proyectos reales de ingeniería y experiencia técnica.",
+                    longDescription: "Este proyecto consiste en el diseño y desarrollo de mi propio portafolio profesional, concebido como una herramienta activa de presentación técnica y no solo como una web estática. El portafolio está estructurado para facilitar la lectura a reclutadores y perfiles técnicos, mostrando proyectos reales con contexto, decisiones técnicas y valor profesional. Se ha priorizado una estructura clara, navegación sencilla y contenido directo.",
+                    technologies: ["Next.js", "React", "Tailwind CSS", "Vercel", "SEO"],
+                    image: "/imagenes/project-portfolio.jpg"
+                },
+                {
+                    slug: "ai-chatbot",
+                    title: "AI Knowledge Chatbot",
+                    shortDescription: "Chatbot basado en inteligencia artificial capaz de responder preguntas en lenguaje natural a través de una interfaz web.",
+                    longDescription: "En este proyecto se ha desarrollado un chatbot basado en el modelo phi-4-mini, integrado en un frontend web propio. El sistema permite a los usuarios interactuar con una IA mediante lenguaje natural, con respuestas contextualizadas. El foco del proyecto ha sido la integración práctica de un modelo de lenguaje en una aplicación web, trabajando la comunicación frontend–IA, el diseño de la interfaz y el comportamiento del chatbot.",
+                    technologies: ["phi-4-mini", "LLM", "HTML/CSS/JS", "Integración Frontend-IA"],
+                    image: "/imagenes/project-ai.jpg",
+                    credentials: {
+                        username: "test@test.com",
+                        password: "test123"
+                    },
+                    url: "https://ia.fraviercaes.es"
+                },
+                {
+                    slug: "media-platform",
+                    title: "Self-Hosted Media Platform",
+                    shortDescription: "Plataforma de streaming multimedia autohosted desplegada en un servidor Linux, accesible públicamente mediante dominio propio y proxy inverso.",
+                    longDescription: "Este proyecto consiste en el despliegue de una plataforma completa de gestión y consumo de contenido multimedia en un servidor cloud, utilizando contenedores Docker y servicios autohosted. La solución permite descargar, organizar y reproducir contenido de manera centralizada. El proyecto pone énfasis en infraestructura, sistemas y entornos Linux, incluyendo la configuración de contenedores, red, DNS, proxy inverso y la integración de múltiples servicios.",
+                    technologies: ["Ubuntu Server", "Docker", "Caddy", "Jellyfin", "Self-hosting"],
+                    image: "/imagenes/project-media.jpg",
+                    credentials: {
+                        username: "test",
+                        password: "test123"
+                    },
+                    url: "https://jellyfin.fraviercaes.es"
+                }
+            ]
+        },
+        projectDetails: {
+            back: "Volver al portafolio",
+            about: "Sobre el proyecto",
+            technologies: "Tecnologías",
+            share: "Compartir",
+            copyLink: "Copiar enlace",
+            accessCredentials: "Credenciales de acceso",
+            username: "Usuario",
+            password: "Contraseña"
         }
     },
     ca: {
         siteTitle: "Kiko | Portfolio",
         nav: {
+            projects: "Projectes",
             experience: "Experiència",
             skills: "Habilitats",
             languages: "Idiomes",
@@ -408,11 +545,61 @@ export const dict: Record<Locale, Dictionary> = {
         },
         footer: {
             rights: "Tots els drets reservats."
+        },
+        projects: {
+            title: "Projectes",
+            items: [
+                {
+                    slug: "personal-portfolio",
+                    title: "Personal Portfolio Website",
+                    shortDescription: "Portfolio web personal dissenyat com a plataforma central per mostrar projectes reals d’enginyeria, desplegaments i experiència tècnica.",
+                    longDescription: "Aquest projecte consisteix en el disseny i desenvolupament del meu propi portfolio professional, concebut com una eina activa de presentació tècnica i no només com una web estàtica. El portfolio està estructurat per facilitar la lectura a recruiters i perfils tècnics, mostrant projectes reals amb context, decisions tècniques i valor professional. S’ha prioritzat una estructura clara, una navegació senzilla i contingut directe.",
+                    technologies: ["Next.js", "React", "Tailwind CSS", "Vercel", "SEO"],
+                    image: "/imagenes/project-portfolio.jpg"
+                },
+                {
+                    slug: "ai-chatbot",
+                    title: "AI Knowledge Chatbot",
+                    shortDescription: "Chatbot basat en intel·ligència artificial capaç de respondre preguntes en llenguatge natural a través d’una interfície web.",
+                    longDescription: "En aquest projecte s’ha desenvolupat un chatbot basat en el model phi-4-mini, integrat en un frontend web propi. El sistema permet als usuaris interactuar amb una IA mitjançant llenguatge natural, amb respostes contextualitzades segons la informació disponible al sistema. El focus del projecte ha estat la integració pràctica d’un model de llenguatge en una aplicació web, treballant la comunicació frontend–IA, el disseny de la interfície i el comportament del chatbot.",
+                    technologies: ["phi-4-mini", "LLM", "HTML/CSS/JS", "Comunicació Frontend–IA"],
+                    image: "/imagenes/project-ai.jpg",
+                    credentials: {
+                        username: "test@test.com",
+                        password: "test123"
+                    },
+                    url: "https://ia.fraviercaes.es"
+                },
+                {
+                    slug: "media-platform",
+                    title: "Self-Hosted Media Platform",
+                    shortDescription: "Plataforma de streaming multimèdia autohosted desplegada en un servidor Linux, accessible públicament mitjançant domini propi i reverse proxy.",
+                    longDescription: "Aquest projecte consisteix en el desplegament d’una plataforma completa de gestió i consum de contingut multimèdia en un servidor cloud, utilitzant contenidors Docker i serveis autohosted. La solució permet descarregar, organitzar i reproduir contingut de manera centralitzada. El projecte posa èmfasi en infraestructura, sistemes i entorns Linux, incloent la configuració de contenidors, xarxa, DNS, reverse proxy i la integració de múltiples serveis.",
+                    technologies: ["Ubuntu Server", "Docker", "Caddy", "Jellyfin", "Self-hosting"],
+                    image: "/imagenes/project-media.jpg",
+                    credentials: {
+                        username: "test",
+                        password: "test123"
+                    },
+                    url: "https://jellyfin.fraviercaes.es"
+                }
+            ]
+        },
+        projectDetails: {
+            back: "Tornar al portfolio",
+            about: "Sobre el projecte",
+            technologies: "Tecnologies",
+            share: "Compartir",
+            copyLink: "Copiar enllaç",
+            accessCredentials: "Credencials d'accés",
+            username: "Usuari",
+            password: "Contrasenya"
         }
     },
     de: {
         siteTitle: "Kiko | Portfolio",
         nav: {
+            projects: "Projekte",
             experience: "Erfahrung",
             skills: "Fähigkeiten",
             languages: "Sprachen",
@@ -512,6 +699,55 @@ export const dict: Record<Locale, Dictionary> = {
         },
         footer: {
             rights: "Alle Rechte vorbehalten."
+        },
+        projects: {
+            title: "Projekte",
+            items: [
+                {
+                    slug: "personal-portfolio",
+                    title: "Personal Portfolio Website",
+                    shortDescription: "Persönliches Web-Portfolio, entworfen als zentrale Plattform zur Präsentation realer Ingenieurprojekte und technischer Erfahrung.",
+                    longDescription: "Dieses Projekt besteht aus dem Design und der Entwicklung meines eigenen professionellen Portfolios, konzipiert als aktives technisches Präsentationstool und nicht nur als statische Website. Das Portfolio ist so strukturiert, dass es Recruitern und technischen Profilen das Lesen erleichtert und reale Projekte mit Kontext, technischen Entscheidungen und professionellem Wert zeigt. Priorität hatten eine klare Struktur, einfache Navigation und direkte Inhalte.",
+                    technologies: ["Next.js", "React", "Tailwind CSS", "Vercel", "SEO"],
+                    image: "/imagenes/project-portfolio.jpg"
+                },
+                {
+                    slug: "ai-chatbot",
+                    title: "AI Knowledge Chatbot",
+                    shortDescription: "Auf künstlicher Intelligenz basierender Chatbot, der natürlichsprachliche Fragen über eine Weboberfläche beantworten kann.",
+                    longDescription: "In diesem Projekt wurde ein Chatbot auf Basis des phi-4-mini-Modells entwickelt und in ein eigenes Web-Frontend integriert. Das System ermöglicht es Benutzern, mit einer KI in natürlicher Sprache zu interagieren, mit kontextualisierten Antworten basierend auf den verfügbaren Informationen. Der Fokus lag auf der praktischen Integration eines Sprachmodells in eine Webanwendung, der Arbeit an der Frontend-KI-Kommunikation, dem Interface-Design und dem Chatbot-Verhalten.",
+                    technologies: ["phi-4-mini", "LLM", "HTML/CSS/JS", "Frontend-KI-Integration"],
+                    image: "/imagenes/project-ai.jpg",
+                    credentials: {
+                        username: "test@test.com",
+                        password: "test123"
+                    },
+                    url: "https://ia.fraviercaes.es"
+                },
+                {
+                    slug: "media-platform",
+                    title: "Self-Hosted Media Platform",
+                    shortDescription: "Selbst gehostete Multimedia-Streaming-Plattform auf einem Linux-Server, öffentlich zugänglich über eigene Domain und Reverse Proxy.",
+                    longDescription: "Dieses Projekt beinhaltet die Bereitstellung einer kompletten zentralisierten Plattform für Content-Management und -Konsum auf einem Cloud-Server unter Verwendung von Docker-Containern und selbst gehosteten Diensten. Die Lösung ermöglicht das zentrale Herunterladen, Organisieren und Abspielen von Inhalten mit Fernzugriff über eine persönliche Domain. Der Schwerpunkt liegt auf Infrastruktur, Systemen und Linux-Umgebungen.",
+                    technologies: ["Ubuntu Server", "Docker", "Caddy", "Jellyfin", "Self-hosting"],
+                    image: "/imagenes/project-media.jpg",
+                    credentials: {
+                        username: "test",
+                        password: "test123"
+                    },
+                    url: "https://jellyfin.fraviercaes.es"
+                }
+            ]
+        },
+        projectDetails: {
+            back: "Zurück zum Portfolio",
+            about: "Über das Projekt",
+            technologies: "Technologien",
+            share: "Teilen",
+            copyLink: "Link kopieren",
+            accessCredentials: "Zugangsdaten",
+            username: "Benutzer",
+            password: "Passwort"
         }
     },
 };

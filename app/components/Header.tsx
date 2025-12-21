@@ -7,20 +7,22 @@ import LanguageSwitcher from "./LanguageSwitcher";
 
 interface HeaderProps {
     navItems: {
-        experience: string;
-        skills: string;
-        languages: string;
-        contact: string;
+        projects?: string;
+        experience?: string;
+        skills?: string;
+        languages?: string;
+        contact?: string;
     };
 }
 
 export default function Header({ navItems }: HeaderProps) {
     const items = [
-        { label: navItems.experience, id: "work-experience" },
-        { label: navItems.skills, id: "skills" },
-        { label: navItems.languages, id: "languages" },
-        { label: navItems.contact, id: "contact" }
-    ];
+        navItems.projects ? { label: navItems.projects, id: "projects" } : null,
+        navItems.experience ? { label: navItems.experience, id: "work-experience" } : null,
+        navItems.skills ? { label: navItems.skills, id: "skills" } : null,
+        navItems.languages ? { label: navItems.languages, id: "languages" } : null,
+        navItems.contact ? { label: navItems.contact, id: "contact" } : null
+    ].filter((item): item is { label: string; id: string } => item !== null);
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 

@@ -1,123 +1,134 @@
 import Header from "../components/Header";
 import MotionWrapper from "../components/MotionWrapper";
-import Carousel3D from "../components/Carousel3D";
 import TypewriterText from "../components/TypewriterText";
 import Footer from "../components/Footer";
 import TechGrid from "../components/TechGrid";
 import LanguageSection from "../components/LanguageSection";
 import WorkExperience from "../components/WorkExperience";
 import ContactSection from "../components/ContactSection";
+import ProjectsSection from "../components/ProjectsSection";
 import { Github, Linkedin } from "lucide-react";
 import { Locale, t } from "../i18n";
 
-export default function Page({ params }: { params: { lang: Locale } }) {
-  const { lang } = params;
+export default async function Page({ params }: { params: Promise<{ lang: Locale }> }) {
+  const { lang } = await params;
 
   return (
     <main className="min-h-screen text-white pt-16 md:pt-24">
       <Header navItems={{
+        projects: t(lang, "nav.projects"),
         experience: t(lang, "nav.experience"),
         skills: t(lang, "nav.skills"),
         languages: t(lang, "nav.languages"),
         contact: t(lang, "nav.contact")
       }} />
 
-      <div className="flex flex-col lg:flex-row items-center justify-center mt-2 md:mt-0 gap-2 md:gap-8 max-w-6xl mx-auto w-full px-4 min-h-[calc(100svh-100px)] md:min-h-[calc(100vh-100px)]">
-        {/* 3D Carousel - Left Column */}
-        <MotionWrapper delay={0.2} className="w-full lg:w-1/2 h-[40svh] md:h-[500px]">
-          <Carousel3D />
-        </MotionWrapper>
-
-        {/* Text Content - Right Column */}
-        <div className="flex flex-col items-center w-full lg:w-1/2">
+      <div className="flex flex-col items-center justify-center gap-8 max-w-4xl mx-auto w-full px-4 min-h-[calc(100vh-100px)]">
+        {/* Text Content - Centered */}
+        <div className="flex flex-col items-center w-full text-center">
           <h1 className="mt-0 text-3xl font-bold text-center">
             <div className="min-h-[40px] md:min-h-[60px]"> {/* Prevent layout shift */}
               <TypewriterText
                 text={t(lang, "hero.role")}
-                className="block text-3xl md:text-5xl text-green-600"
-                delay={1.5}
+                className="block text-4xl md:text-6xl text-green-600"
+                delay={0.5}
               />
             </div>
-            <div className="mt-2 min-h-[30px] md:min-h-[40px]">
+            <div className="mt-4 min-h-[30px] md:min-h-[40px]">
               <TypewriterText
                 text={t(lang, "hero.name")}
                 className="block text-xl md:text-3xl text-white"
-                delay={3.5}
+                delay={2.5}
               />
             </div>
           </h1>
 
-          <div className="mt-8 flex gap-4 justify-center">
+          <div className="mt-12 flex gap-6 justify-center">
             {/* LinkedIn */}
             <MotionWrapper
               delay={1.0}
-              initial={{ opacity: 0, y: -50 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.5 }}
             >
               <a
                 href="https://www.linkedin.com/in/francisco-xavier-carrascal-esquivel-50b680370/"
                 target="_blank"
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-500 hover:bg-blue-700 transition"
+                className="flex h-14 w-14 items-center justify-center rounded-full border border-gray-500 hover:bg-[#0077b5] hover:border-[#0077b5] transition-all duration-300 transform hover:scale-110"
               >
-                <Linkedin className="h-6 w-6 text-white" />
+                <Linkedin className="h-7 w-7 text-white" />
               </a>
             </MotionWrapper>
 
             {/* GitHub */}
             <MotionWrapper
-              delay={1.0}
-              initial={{ opacity: 0, y: -50 }}
+              delay={1.2}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.5 }}
             >
               <a
                 href="https://github.com/FranciscoXavierCarrascalEsquivel"
                 target="_blank"
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-500 hover:bg-gray-800 transition"
+                className="flex h-14 w-14 items-center justify-center rounded-full border border-gray-500 hover:bg-[#333] hover:border-[#333] transition-all duration-300 transform hover:scale-110"
               >
-                <Github className="h-6 w-6 text-white" />
+                <Github className="h-7 w-7 text-white" />
               </a>
             </MotionWrapper>
           </div>
 
-          <div className="mt-8 flex justify-center">
-            <div className="mt-8 flex gap-4 justify-center flex-wrap">
+          <div className="mt-12 flex justify-center">
+            <div className="flex gap-6 justify-center flex-wrap">
               {/* Fiverr Button */}
-              <a
-                href="https://www.fiverr.com/fraviercaes/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center gap-2 px-6 py-3 bg-[#1DBF73] hover:bg-[#19a463] text-white font-bold text-sm uppercase tracking-wider rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl hover:shadow-green-500/50"
-              >
-                <img
-                  src="/imagenes/fiverr.png"
-                  alt="Fiverr"
-                  className="w-5 h-5 brightness-0 invert"
-                />
-                {t(lang, "hero.fiverr")}
-              </a>
+              <MotionWrapper delay={1.4}>
+                <a
+                  href="https://www.fiverr.com/fraviercaes/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex items-center gap-3 px-8 py-4 bg-[#1DBF73] hover:bg-[#19a463] text-white font-bold text-base uppercase tracking-wider rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-green-500/50"
+                >
+                  <img
+                    src="/imagenes/fiverr.png"
+                    alt="Fiverr"
+                    className="w-6 h-6 brightness-0 invert"
+                  />
+                  {t(lang, "hero.fiverr")}
+                </a>
+              </MotionWrapper>
 
               {/* Contact Me Button */}
-              <a
-                href="#contact"
-                className="group relative inline-flex items-center gap-2 px-6 py-3 bg-transparent border-2 border-white hover:bg-white text-white hover:text-black font-bold text-sm uppercase tracking-wider rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
+              <MotionWrapper delay={1.6}>
+                <a
+                  href="#contact"
+                  className="group relative inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-white hover:bg-white text-white hover:text-black font-bold text-base uppercase tracking-wider rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                {t(lang, "hero.contact")}
-              </a>
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  {t(lang, "hero.contact")}
+                </a>
+              </MotionWrapper>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Section Separator */}
+      <div className="max-w-4xl mx-auto mt-24 mb-12">
+        <div className="h-px bg-gradient-to-r from-transparent via-green-400 to-transparent opacity-30"></div>
+      </div>
+
+      <ProjectsSection
+        title={t(lang, "projects.title")}
+        projects={t(lang, "projects.items")}
+        lang={lang}
+      />
 
       {/* Section Separator */}
       <div className="max-w-4xl mx-auto mt-24 mb-12">

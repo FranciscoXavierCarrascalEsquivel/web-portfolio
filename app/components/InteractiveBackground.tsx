@@ -12,6 +12,8 @@ export default function InteractiveBackground() {
     const y = useSpring(mouseY, springConfig);
 
     useEffect(() => {
+        if (typeof window === "undefined") return;
+
         // Center initially
         mouseX.set(window.innerWidth / 2 - 400);
         mouseY.set(window.innerHeight / 2 - 400);
