@@ -12,6 +12,9 @@ interface ProjectItem {
     shortDescription: string;
     technologies: string[];
     image: string;
+    featured?: boolean;
+    inProgress?: boolean;
+    isTFG?: boolean;
 }
 
 interface ProjectsSectionProps {
@@ -44,14 +47,34 @@ export default function ProjectsSection({ title, projects, lang }: ProjectsSecti
                     <MotionWrapper
                         key={project.slug}
                         delay={0.2 + index * 0.1}
-                        className="group relative h-full"
+                        className={`group relative h-full ${project.featured ? 'col-span-1 md:col-span-2 lg:col-span-3' : ''}`}
                     >
                         <Link
-                            href={`/${lang}/projects/${project.slug}`}
-                            className="block h-full"
-                            onClick={() => setLoadingSlug(project.slug)}
+                            href={project.inProgress ? '#' : `/${lang}/projects/${project.slug}`}
+                            className={`block h-full ${project.inProgress ? 'cursor-not-allowed' : ''}`}
+                            onClick={(e) => {
+                                if (project.inProgress) {
+                                    e.preventDefault();
+                                    return;
+                                }
+                                setLoadingSlug(project.slug);
+                            }}
                         >
                             <div className={`h-full bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden hover:border-green-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,197,94,0.1)] flex flex-col relative ${loadingSlug === project.slug ? 'opacity-70' : ''}`}>
+
+                                {/* TFG Badge */}
+                                {project.isTFG && (
+                                    <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-cyan-600 text-white text-xs font-bold rounded-full shadow-lg font-mono tracking-wider">
+                                        TFG
+                                    </div>
+                                )}
+
+                                {/* Work In Progress Badge */}
+                                {project.inProgress && (
+                                    <div className="absolute top-4 right-4 z-20 px-3 py-1 bg-yellow-500 text-black text-xs font-bold rounded-full shadow-lg font-mono tracking-wider">
+                                        WORK IN PROGRESS
+                                    </div>
+                                )}
 
                                 {/* Loading Overlay */}
                                 {loadingSlug === project.slug && (

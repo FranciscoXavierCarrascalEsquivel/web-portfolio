@@ -92,6 +92,9 @@ interface ProjectItem {
     image: string;
     credentials?: ProjectCredentials;
     url?: string;
+    featured?: boolean;
+    inProgress?: boolean;
+    isTFG?: boolean;
 }
 
 interface ProjectCredentials {
@@ -242,6 +245,17 @@ export const dict: Record<Locale, Dictionary> = {
         projects: {
             title: "Projects",
             items: [
+                {
+                    slug: "supreme",
+                    title: "SUPReme",
+                    shortDescription: "2D bullethell RPG currently in development with Unity.",
+                    longDescription: "SUPReme is a 2D bullethell RPG video game that I am currently developing using the Unity engine. The project aims to combine fast-paced mechanics with role-playing elements.",
+                    technologies: ["Unity", "C#", "2D Animation", "Game Design"],
+                    image: "/imagenes/supreme.png",
+                    featured: true,
+                    inProgress: true,
+                    isTFG: true
+                },
                 {
                     slug: "personal-portfolio",
                     title: "Personal Portfolio Website",
@@ -398,6 +412,17 @@ export const dict: Record<Locale, Dictionary> = {
             title: "Proyectos",
             items: [
                 {
+                    slug: "supreme",
+                    title: "SUPReme",
+                    shortDescription: "RPG bullethell 2D en desarrollo con Unity.",
+                    longDescription: "SUPReme es un videojuego RPG bullethell en 2D que estoy desarrollando actualmente utilizando el motor Unity. El proyecto busca combinar mecánicas frenéticas con elementos de rol.",
+                    technologies: ["Unity", "C#", "2D Animation", "Game Design"],
+                    image: "/imagenes/supreme.png",
+                    featured: true,
+                    inProgress: true,
+                    isTFG: true
+                },
+                {
                     slug: "personal-portfolio",
                     title: "Personal Portfolio Website",
                     shortDescription: "Portafolio web personal diseñado como plataforma central para mostrar proyectos reales de ingeniería y experiencia técnica.",
@@ -553,6 +578,17 @@ export const dict: Record<Locale, Dictionary> = {
             title: "Projectes",
             items: [
                 {
+                    slug: "supreme",
+                    title: "SUPReme",
+                    shortDescription: "RPG bullethell 2D en desenvolupament a Unity.",
+                    longDescription: "SUPReme és un videojoc RPG bullethell en 2D que estic desenvolupant actualment utilitzant el motor Unity. El projecte busca combinar mecàniques frenètiques amb elements de rol.",
+                    technologies: ["Unity", "C#", "2D Animation", "Game Design"],
+                    image: "/imagenes/supreme.png",
+                    featured: true,
+                    inProgress: true,
+                    isTFG: true
+                },
+                {
                     slug: "personal-portfolio",
                     title: "Personal Portfolio Website",
                     shortDescription: "Portfolio web personal dissenyat com a plataforma central per mostrar projectes reals d’enginyeria, desplegaments i experiència tècnica.",
@@ -707,6 +743,17 @@ export const dict: Record<Locale, Dictionary> = {
         projects: {
             title: "Projekte",
             items: [
+                {
+                    slug: "supreme",
+                    title: "SUPReme",
+                    shortDescription: "2D-Bullethell-RPG, das derzeit mit Unity entwickelt wird.",
+                    longDescription: "SUPReme ist ein 2D-Bullethell-RPG-Videospiel, das ich derzeit mit der Unity-Engine entwickle. Das Projekt zielt darauf ab, rasante Mechaniken mit Rollenspielelementen zu kombinieren.",
+                    technologies: ["Unity", "C#", "2D Animation", "Game Design"],
+                    image: "/imagenes/supreme.png",
+                    featured: true,
+                    inProgress: true,
+                    isTFG: true
+                },
                 {
                     slug: "personal-portfolio",
                     title: "Personal Portfolio Website",
